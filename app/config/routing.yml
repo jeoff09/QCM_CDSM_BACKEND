@@ -1,3 +1,8 @@
+tact_factory_web_service:
+    resource: "@TactFactoryWebServiceBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
