@@ -70,6 +70,10 @@ class User
      */
     private $createdAt;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
+    */
+    private $mcqs;
 
     /**
      * Get id
@@ -240,5 +244,45 @@ class User
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->mcqs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add mcqs
+     *
+     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     * @return User
+     */
+    public function addMcq(\OC\PlatformBundle\Entity\MCQ $mcqs)
+    {
+        $this->mcqs[] = $mcqs;
+
+        return $this;
+    }
+
+    /**
+     * Remove mcqs
+     *
+     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     */
+    public function removeMcq(\OC\PlatformBundle\Entity\MCQ $mcqs)
+    {
+        $this->mcqs->removeElement($mcqs);
+    }
+
+    /**
+     * Get mcqs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMcqs()
+    {
+        return $this->mcqs;
     }
 }

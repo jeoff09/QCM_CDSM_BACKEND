@@ -28,6 +28,22 @@ class Question
      */
     private $que;
 
+	/**
+    * @ORM\OneToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Media" ,cascade={"remove"})
+    */
+    private $media;
+	
+     /**
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Answer", mappedBy="question")
+    */
+    private $answers;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $mcq;
+
     /**
      * @var \DateTime
      *
@@ -120,5 +136,91 @@ class Question
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set media
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Media $media
+     * @return Question
+     */
+    public function setMedia(\TactFactory\WebServiceBundle\Entity\Media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
+
+    /**
+     * Get media
+     *
+     * @return \TactFactory\WebServiceBundle\Entity\Media 
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * Set mcq
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\MSQ $mcq
+     * @return Question
+     */
+    public function setMcq(\TactFactory\WebServiceBundle\Entity\MSQ $mcq)
+    {
+        $this->mcq = $mcq;
+
+        return $this;
+    }
+
+    /**
+     * Get mcq
+     *
+     * @return \TactFactory\WebServiceBundle\Entity\MSQ 
+     */
+    public function getMcq()
+    {
+        return $this->mcq;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add answers
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Answer $answers
+     * @return Question
+     */
+    public function addAnswer(\TactFactory\WebServiceBundle\Entity\Answer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Answer $answers
+     */
+    public function removeAnswer(\TactFactory\WebServiceBundle\Entity\Answer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
+
+    /**
+     * Get answers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
     }
 }

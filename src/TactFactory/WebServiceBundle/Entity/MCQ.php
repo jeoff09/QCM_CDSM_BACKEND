@@ -49,6 +49,17 @@ class MCQ
      */
     private $duration;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Category", inversedBy="mcqs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+     /**
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Question", mappedBy="mcq")
+    */
+    private $questions;
+
     /**
      * @var \DateTime
      *
@@ -210,5 +221,68 @@ class MCQ
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add questions
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Question $questions
+     * @return MCQ
+     */
+    public function addQuestion(\TactFactory\WebServiceBundle\Entity\Question $questions)
+    {
+        $this->questions[] = $questions;
+
+        return $this;
+    }
+
+    /**
+     * Remove questions
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Question $questions
+     */
+    public function removeQuestion(\TactFactory\WebServiceBundle\Entity\Question $questions)
+    {
+        $this->questions->removeElement($questions);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Category $category
+     * @return MCQ
+     */
+    public function setCategory(\TactFactory\WebServiceBundle\Entity\Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \TactFactory\WebServiceBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

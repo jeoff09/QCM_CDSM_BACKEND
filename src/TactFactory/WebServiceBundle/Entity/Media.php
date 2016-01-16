@@ -28,6 +28,12 @@ class Media
      */
     private $url;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Typ", inversedBy="medias")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $typ;
+
     /**
      * @var \DateTime
      *
@@ -120,5 +126,28 @@ class Media
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set typ
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Typ $typ
+     * @return Media
+     */
+    public function setTyp(\TactFactory\WebServiceBundle\Entity\Typ $typ)
+    {
+        $this->typ = $typ;
+
+        return $this;
+    }
+
+    /**
+     * Get typ
+     *
+     * @return \TactFactory\WebServiceBundle\Entity\Typ 
+     */
+    public function getTyp()
+    {
+        return $this->typ;
     }
 }

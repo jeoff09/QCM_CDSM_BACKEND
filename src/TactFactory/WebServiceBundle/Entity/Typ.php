@@ -28,6 +28,11 @@ class Typ
      */
     private $name;
 
+     /**
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Media", mappedBy="typ")
+    */
+    private $medias;
+
     /**
      * @var \DateTime
      *
@@ -120,5 +125,45 @@ class Typ
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add medias
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Media $medias
+     * @return Typ
+     */
+    public function addMedia(\TactFactory\WebServiceBundle\Entity\Media $medias)
+    {
+        $this->medias[] = $medias;
+
+        return $this;
+    }
+
+    /**
+     * Remove medias
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Media $medias
+     */
+    public function removeMedia(\TactFactory\WebServiceBundle\Entity\Media $medias)
+    {
+        $this->medias->removeElement($medias);
+    }
+
+    /**
+     * Get medias
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMedias()
+    {
+        return $this->medias;
     }
 }

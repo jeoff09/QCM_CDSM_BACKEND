@@ -28,6 +28,12 @@ class Answer
      */
     private $ans;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Question", inversedBy="answers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $question;
+
     /**
      * @var bool
      *
@@ -150,5 +156,28 @@ class Answer
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set question
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Question $question
+     * @return Answer
+     */
+    public function setQuestion(\TactFactory\WebServiceBundle\Entity\Question $question)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Get question
+     *
+     * @return \TactFactory\WebServiceBundle\Entity\Question 
+     */
+    public function getQuestion()
+    {
+        return $this->question;
     }
 }

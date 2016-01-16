@@ -28,6 +28,11 @@ class Category
      */
     private $name;
 
+         /**
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", mappedBy="category")
+    */
+    private $mcqs;
+
     /**
      * @var \DateTime
      *
@@ -120,5 +125,45 @@ class Category
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->mcqs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add mcqs
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\MCQ $mcqs
+     * @return Category
+     */
+    public function addMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
+    {
+        $this->mcqs[] = $mcqs;
+
+        return $this;
+    }
+
+    /**
+     * Remove mcqs
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\MCQ $mcqs
+     */
+    public function removeMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
+    {
+        $this->mcqs->removeElement($mcqs);
+    }
+
+    /**
+     * Get mcqs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMcqs()
+    {
+        return $this->mcqs;
     }
 }

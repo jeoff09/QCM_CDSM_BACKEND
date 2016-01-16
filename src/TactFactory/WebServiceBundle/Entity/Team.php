@@ -29,6 +29,16 @@ class Team
     private $name;
 
     /**
+    * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
+    */
+    private $mcqs;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\User", cascade={"persist"})
+    */
+    private $users;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
@@ -120,5 +130,78 @@ class Team
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->mcqs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add mcqs
+     *
+     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     * @return Team
+     */
+    public function addMcq(\OC\PlatformBundle\Entity\MCQ $mcqs)
+    {
+        $this->mcqs[] = $mcqs;
+
+        return $this;
+    }
+
+    /**
+     * Remove mcqs
+     *
+     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     */
+    public function removeMcq(\OC\PlatformBundle\Entity\MCQ $mcqs)
+    {
+        $this->mcqs->removeElement($mcqs);
+    }
+
+    /**
+     * Get mcqs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMcqs()
+    {
+        return $this->mcqs;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \OC\PlatformBundle\Entity\User $users
+     * @return Team
+     */
+    public function addUser(\OC\PlatformBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \OC\PlatformBundle\Entity\User $users
+     */
+    public function removeUser(\OC\PlatformBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
