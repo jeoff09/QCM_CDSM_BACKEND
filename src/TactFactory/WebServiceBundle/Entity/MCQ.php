@@ -74,6 +74,10 @@ class MCQ
      */
     private $updatedAt;
 
+         /**
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Result", mappedBy="mcq")
+    */
+    private $results;
 
     /**
      * Get id
@@ -284,5 +288,38 @@ class MCQ
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Add results
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Result $results
+     * @return MCQ
+     */
+    public function addResult(\TactFactory\WebServiceBundle\Entity\Result $results)
+    {
+        $this->results[] = $results;
+
+        return $this;
+    }
+
+    /**
+     * Remove results
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Result $results
+     */
+    public function removeResult(\TactFactory\WebServiceBundle\Entity\Result $results)
+    {
+        $this->results->removeElement($results);
+    }
+
+    /**
+     * Get results
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 }

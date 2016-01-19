@@ -35,6 +35,18 @@ class Result
      */
     private $isCompleted;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", inversedBy="results")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $mcq;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\User", inversedBy="results")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usr;
+
 
     /**
      * Get id
@@ -90,5 +102,51 @@ class Result
     public function getIsCompleted()
     {
         return $this->isCompleted;
+    }
+
+    /**
+     * Set mcq
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\MCQ $mcq
+     * @return Result
+     */
+    public function setMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcq)
+    {
+        $this->mcq = $mcq;
+
+        return $this;
+    }
+
+    /**
+     * Get mcq
+     *
+     * @return \TactFactory\WebServiceBundle\Entity\MCQ 
+     */
+    public function getMcq()
+    {
+        return $this->mcq;
+    }
+
+    /**
+     * Set usr
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\User $usr
+     * @return Result
+     */
+    public function setUsr(\TactFactory\WebServiceBundle\Entity\User $usr)
+    {
+        $this->usr = $usr;
+
+        return $this;
+    }
+
+    /**
+     * Get usr
+     *
+     * @return \TactFactory\WebServiceBundle\Entity\User 
+     */
+    public function getUsr()
+    {
+        return $this->usr;
     }
 }

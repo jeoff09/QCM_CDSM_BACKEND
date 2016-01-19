@@ -75,6 +75,16 @@ class User
     */
     private $mcqs;
 
+        /**
+    * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Role", cascade={"persist"})
+    */
+    private $roles;
+
+    /**
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Result", mappedBy="usr")
+    */
+    private $results;
+
     /**
      * Get id
      *
@@ -284,5 +294,71 @@ class User
     public function getMcqs()
     {
         return $this->mcqs;
+    }
+
+    /**
+     * Add roles
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Role $roles
+     * @return User
+     */
+    public function addRole(\TactFactory\WebServiceBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Role $roles
+     */
+    public function removeRole(\TactFactory\WebServiceBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
+
+    /**
+     * Get roles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Add results
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Result $results
+     * @return User
+     */
+    public function addResult(\TactFactory\WebServiceBundle\Entity\Result $results)
+    {
+        $this->results[] = $results;
+
+        return $this;
+    }
+
+    /**
+     * Remove results
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Result $results
+     */
+    public function removeResult(\TactFactory\WebServiceBundle\Entity\Result $results)
+    {
+        $this->results->removeElement($results);
+    }
+
+    /**
+     * Get results
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 }
