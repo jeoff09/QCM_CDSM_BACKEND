@@ -94,7 +94,7 @@ class Team
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updateAt = $updateAt;
+        $this->updateAt = $updatedAt;
 
         return $this;
     }
@@ -145,7 +145,7 @@ class Team
      * @param \OC\PlatformBundle\Entity\MCQ $mcqs
      * @return Team
      */
-    public function addMcq(\OC\PlatformBundle\Entity\MCQ $mcqs)
+    public function addMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
     {
         $this->mcqs[] = $mcqs;
 
@@ -157,7 +157,7 @@ class Team
      *
      * @param \OC\PlatformBundle\Entity\MCQ $mcqs
      */
-    public function removeMcq(\OC\PlatformBundle\Entity\MCQ $mcqs)
+    public function removeMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
     {
         $this->mcqs->removeElement($mcqs);
     }
@@ -178,7 +178,7 @@ class Team
      * @param \OC\PlatformBundle\Entity\User $users
      * @return Team
      */
-    public function addUser(\OC\PlatformBundle\Entity\User $users)
+    public function addUser(\TactFactory\WebServiceBundle\Entity\User $users)
     {
         $this->users[] = $users;
 
@@ -190,7 +190,7 @@ class Team
      *
      * @param \OC\PlatformBundle\Entity\User $users
      */
-    public function removeUser(\OC\PlatformBundle\Entity\User $users)
+    public function removeUser(\TactFactory\WebServiceBundle\Entity\User $users)
     {
         $this->users->removeElement($users);
     }

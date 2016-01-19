@@ -167,7 +167,7 @@ class Question
      * @param \TactFactory\WebServiceBundle\Entity\MSQ $mcq
      * @return Question
      */
-    public function setMcq(\TactFactory\WebServiceBundle\Entity\MSQ $mcq)
+    public function setMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcq)
     {
         $this->mcq = $mcq;
 

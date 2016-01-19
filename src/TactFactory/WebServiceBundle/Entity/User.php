@@ -269,7 +269,7 @@ class User
      * @param \OC\PlatformBundle\Entity\MCQ $mcqs
      * @return User
      */
-    public function addMcq(\OC\PlatformBundle\Entity\MCQ $mcqs)
+    public function addMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
     {
         $this->mcqs[] = $mcqs;
 
@@ -281,7 +281,7 @@ class User
      *
      * @param \OC\PlatformBundle\Entity\MCQ $mcqs
      */
-    public function removeMcq(\OC\PlatformBundle\Entity\MCQ $mcqs)
+    public function removeMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
     {
         $this->mcqs->removeElement($mcqs);
     }
