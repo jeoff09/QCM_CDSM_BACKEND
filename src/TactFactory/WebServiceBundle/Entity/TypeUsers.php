@@ -5,12 +5,12 @@ namespace TactFactory\WebServiceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Role
+ * TypeUsers
  *
- * @ORM\Table(name="role")
- * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\RoleRepository")
+ * @ORM\Table(name="type_users")
+ * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\TypeUsersRepository")
  */
-class Role
+class TypeUsers
 {
     /**
      * @var int
@@ -22,12 +22,10 @@ class Role
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\User", mappedBy="$typeUser")
      */
-    private $name;
-
+    private $users;
+    
     /**
      * @var \DateTime
      *
@@ -54,33 +52,10 @@ class Role
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     * @return Role
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Role
+     * @return TypeUsers
      */
     public function setCreatedAt($createdAt)
     {
@@ -103,7 +78,7 @@ class Role
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Role
+     * @return TypeUsers
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -120,5 +95,45 @@ class Role
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add users
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\User $users
+     * @return TypeUsers
+     */
+    public function addUser(\TactFactory\WebServiceBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\User $users
+     */
+    public function removeUser(\TactFactory\WebServiceBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

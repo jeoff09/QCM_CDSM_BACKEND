@@ -1,7 +1,7 @@
 <?php
 
 namespace TactFactory\WebServiceBundle\Entity;
-
+use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="team")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\TeamRepository")
  */
-class Team
+class Team extends BaseGroup
 {
     /**
      * @var int
@@ -19,15 +19,14 @@ class Team
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected  $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $name;
-
+    private $title;
     /**
     * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
     */
@@ -62,30 +61,7 @@ class Team
     {
         return $this->id;
     }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Team
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
+	
     /**
      * Set updatedAt
      *
@@ -136,6 +112,7 @@ class Team
      */
     public function __construct()
     {
+    	parent::__construct();
         $this->mcqs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -203,5 +180,28 @@ class Team
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Team
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
