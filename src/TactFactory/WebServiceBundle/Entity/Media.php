@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="media")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\MediaRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Media
 {
@@ -82,7 +83,7 @@ class Media
         return $this->url;
     }
 
-    /**
+    /**@ORM\PreUpdate
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
@@ -90,7 +91,7 @@ class Media
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }
@@ -106,6 +107,7 @@ class Media
     }
 
     /**
+     * @ORM\PrePersist
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -113,7 +115,8 @@ class Media
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }

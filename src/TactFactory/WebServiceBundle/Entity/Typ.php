@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="typ")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\TypRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Typ
 {
@@ -82,6 +83,7 @@ class Typ
     }
 
     /**
+     * @ORM\PreUpdate
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
@@ -89,7 +91,7 @@ class Typ
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime;
 
         return $this;
     }
@@ -105,6 +107,7 @@ class Typ
     }
 
     /**
+     * @ORM\PrePersist
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -112,7 +115,8 @@ class Typ
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new  \DateTime();
 
         return $this;
     }

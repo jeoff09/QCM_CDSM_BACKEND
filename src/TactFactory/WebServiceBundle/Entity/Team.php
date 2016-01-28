@@ -1,7 +1,6 @@
 <?php
 
 namespace TactFactory\WebServiceBundle\Entity;
-use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,8 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="team")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\TeamRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Team extends BaseGroup
+class Team 
 {
     /**
      * @var int
@@ -22,36 +22,24 @@ class Team extends BaseGroup
     protected  $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
-    /**
     * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
     */
-    private $mcqs;
-
-    /**
-    * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\User", cascade={"persist"})
-    */
-    private $users;
-
+    private  $mcqs;
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
+    
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
-
-
+    
+    
     /**
      * Get id
      *
@@ -61,65 +49,18 @@ class Team extends BaseGroup
     {
         return $this->id;
     }
-	
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     * @return Team
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updateAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime 
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     * @return Team
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime 
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
     /**
      * Constructor
      */
     public function __construct()
     {
-    	parent::__construct();
         $this->mcqs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add mcqs
      *
-     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     * @param \TactFactoryWebServiceBundle\Entity\MCQ $mcqs
      * @return Team
      */
     public function addMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
@@ -132,7 +73,7 @@ class Team extends BaseGroup
     /**
      * Remove mcqs
      *
-     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     *@param \TactFactoryWebServiceBundle\Entity\MCQ $mcqs
      */
     public function removeMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
     {
@@ -150,58 +91,51 @@ class Team extends BaseGroup
     }
 
     /**
-     * Add users
+     * @ORM\PreUpdate
+     * Set updatedAt
      *
-     * @param \OC\PlatformBundle\Entity\User $users
+     * @param \DateTime $updatedAt
      * @return Team
      */
-    public function addUser(\TactFactory\WebServiceBundle\Entity\User $users)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->users[] = $users;
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }
 
     /**
-     * Remove users
+     * Get updatedAt
      *
-     * @param \OC\PlatformBundle\Entity\User $users
+     * @return \DateTime 
      */
-    public function removeUser(\TactFactory\WebServiceBundle\Entity\User $users)
+    public function getUpdatedAt()
     {
-        $this->users->removeElement($users);
+        return $this->updatedAt;
     }
 
     /**
-     * Get users
+     * @ORM\PrePersist
+     * Set createdAt
      *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
+     * @param \DateTime $createdAt
      * @return Team
      */
-    public function setTitle($title)
+    public function setCreatedAt($createdAt)
     {
-        $this->title = $title;
+        $this->createdAt = new  \DateTime();
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get createdAt
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getTitle()
+    public function getCreatedAt()
     {
-        return $this->title;
+        return $this->createdAt;
     }
 }

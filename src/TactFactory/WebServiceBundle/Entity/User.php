@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="fos_user")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
 {
@@ -25,16 +26,33 @@ class User extends BaseUser
     * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
     */
     private $mcqs;
-    /**
-     * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\TypeUsers", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-	private $typeUser;
+	
+	/**
+	 * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Team")
+	 * @ORM\JoinTable(name="fos_user_team",
+	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+	 *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
+	 * )
+	 */
+	protected $teams;
+	
     /**
     * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Result", mappedBy="usr")
     */
     private $results;
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
     /**
      * Get id
      *
@@ -46,6 +64,7 @@ class User extends BaseUser
     }
 
     /**
+     * @ORM\PreUpdate
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
@@ -53,7 +72,7 @@ class User extends BaseUser
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+         $this->updatedAt = new \DateTime();
 
         return $this;
     }
@@ -69,6 +88,7 @@ class User extends BaseUser
     }
 
     /**
+     * @ORM\PrePersist
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -76,8 +96,8 @@ class User extends BaseUser
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
-
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
         return $this;
     }
 
@@ -102,7 +122,7 @@ class User extends BaseUser
     /**
      * Add mcqs
      *
-     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     * @param \TactFactory\WebServiceBundle\Entity\MCQ $mcqs
      * @return User
      */
     public function addMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
@@ -115,7 +135,7 @@ class User extends BaseUser
     /**
      * Remove mcqs
      *
-     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     * @param \TactFactory\WebServiceBundle\Entity\MCQ $mcqs
      */
     public function removeMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
     {
@@ -168,48 +188,35 @@ class User extends BaseUser
     }
 
     /**
-     * Set typeUser
+     * Add teams
      *
-     * @param \TactFactory\WebServiceBundle\Entity\TypeUsers $typeUser
+     * @param \TactFactory\WebServiceBundle\Entity\Team $teams
      * @return User
      */
-    public function setTypeUser(\TactFactory\WebServiceBundle\Entity\TypeUsers $typeUser)
+    public function addTeam(\TactFactory\WebServiceBundle\Entity\Team $teams)
     {
-        $this->typeUser = $typeUser;
+        $this->teams[] = $teams;
 
         return $this;
     }
 
     /**
-     * Get typeUser
+     * Remove teams
      *
-     * @return \TactFactory\WebServiceBundle\Entity\TypeUsers 
+     * @param \TactFactory\WebServiceBundle\Entity\Team $teams
      */
-    public function getTypeUser()
+    public function removeTeam(\TactFactory\WebServiceBundle\Entity\Team $teams)
     {
-        return $this->typeUser;
+        $this->teams->removeElement($teams);
     }
 
     /**
-     * Add typeUser
+     * Get teams
      *
-     * @param \TactFactory\WebServiceBundle\Entity\TypeUsers $typeUser
-     * @return User
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function addTypeUser(\TactFactory\WebServiceBundle\Entity\TypeUsers $typeUser)
+    public function getTeams()
     {
-        $this->typeUser[] = $typeUser;
-
-        return $this;
-    }
-
-    /**
-     * Remove typeUser
-     *
-     * @param \TactFactory\WebServiceBundle\Entity\TypeUsers $typeUser
-     */
-    public function removeTypeUser(\TactFactory\WebServiceBundle\Entity\TypeUsers $typeUser)
-    {
-        $this->typeUser->removeElement($typeUser);
+        return $this->teams;
     }
 }

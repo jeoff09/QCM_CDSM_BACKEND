@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="answer")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\AnswerRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Answer
 {
@@ -113,6 +114,7 @@ class Answer
     }
 
     /**
+     * @ORM\PrePersist
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -120,8 +122,8 @@ class Answer
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
-
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
         return $this;
     }
 
@@ -136,6 +138,7 @@ class Answer
     }
 
     /**
+     * @ORM\PreUpdate
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
@@ -143,7 +146,7 @@ class Answer
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->$updatedAt = new \DateTime();
 
         return $this;
     }

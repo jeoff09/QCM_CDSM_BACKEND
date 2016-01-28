@@ -3,12 +3,14 @@
 namespace TactFactory\WebServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PreUpdate;
 
 /**
  * MCQ
  *
  * @ORM\Table(name="m_c_q")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\MCQRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class MCQ
 {
@@ -182,6 +184,7 @@ class MCQ
     }
 
     /**
+     * @ORM\PrePersist
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -189,7 +192,8 @@ class MCQ
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new  \DateTime();
+        $this->updatedAt = new  \DateTime();
 
         return $this;
     }
@@ -205,6 +209,7 @@ class MCQ
     }
 
     /**
+     * @ORM\PreUpdate
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
@@ -212,7 +217,7 @@ class MCQ
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }
@@ -224,7 +229,9 @@ class MCQ
      */
     public function getUpdatedAt()
     {
-        return $this->updatedAt;
+        return $this->updatedAt ;
+
+        
     }
     /**
      * Constructor
