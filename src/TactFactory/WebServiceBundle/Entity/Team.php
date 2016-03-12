@@ -21,10 +21,18 @@ class Team
      */
     protected  $id;
 
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+
     /**
     * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
     */
     private  $mcqs;
+
     /**
      * @var \DateTime
      *
@@ -137,5 +145,28 @@ class Team
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Team
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

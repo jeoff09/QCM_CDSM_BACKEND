@@ -25,7 +25,7 @@ class Answer
     /**
      * @var string
      *
-     * @ORM\Column(name="ans", type="string", length=255)
+     * @ORM\Column(name="ans", type="string", length=255, unique=true)
      */
     private $ans;
 

@@ -30,7 +30,7 @@ class Typ
     private $name;
 
      /**
-    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Media", mappedBy="typ")
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Media", mappedBy="typ",cascade={"remove"})
     */
     private $medias;
 

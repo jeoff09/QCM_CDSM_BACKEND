@@ -26,7 +26,7 @@ class MCQ
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
@@ -58,7 +58,7 @@ class MCQ
     private $category;
 
      /**
-    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Question", mappedBy="mcq")
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Question", mappedBy="mcq",cascade={"remove"})
     */
     private $questions;
 

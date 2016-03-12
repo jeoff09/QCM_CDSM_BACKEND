@@ -25,6 +25,14 @@ class Media
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+    
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
@@ -152,5 +160,28 @@ class Media
     public function getTyp()
     {
         return $this->typ;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Media
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
