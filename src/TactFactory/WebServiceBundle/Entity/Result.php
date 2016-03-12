@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="result")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\ResultRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Result
 {
@@ -46,7 +47,19 @@ class Result
      * @ORM\JoinColumn(nullable=false)
      */
     private $usr;
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
 
     /**
      * Get id
@@ -148,5 +161,55 @@ class Result
     public function getUsr()
     {
         return $this->usr;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Result
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Result
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt= new \DateTime();
+        
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

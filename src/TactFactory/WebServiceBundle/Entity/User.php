@@ -1,16 +1,17 @@
 <?php
 
 namespace TactFactory\WebServiceBundle\Entity;
-
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="fos_user")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var int
@@ -19,72 +20,39 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
+    protected  $id;
+    
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
+    * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
+    */
+    private $mcqs;
+	
+	/**
+	 * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Team")
+	 * @ORM\JoinTable(name="fos_user_team",
+	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+	 *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
+	 * )
+	 */
+	protected $teams;
+	
     /**
-     * @var string
-     *
-     * @ORM\Column(name="first_name", type="string", length=255)
-     */
-    private $firstName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="login", type="string", length=255)
-     */
-    private $login;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255)
-     */
-    private $password;
-
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Result", mappedBy="usr")
+    */
+    private $results;
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
+    
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
-
-    /**
-    * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
-    */
-    private $mcqs;
-
-        /**
-    * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Role", cascade={"persist"})
-    */
-    private $roles;
-
-    /**
-    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Result", mappedBy="usr")
-    */
-    private $results;
-
     /**
      * Get id
      *
@@ -96,121 +64,7 @@ class User
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     * @return User
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set login
-     *
-     * @param string $login
-     * @return User
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    /**
-     * Get login
-     *
-     * @return string 
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
+     * @ORM\PreUpdate
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
@@ -218,7 +72,7 @@ class User
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+         $this->updatedAt = new \DateTime();
 
         return $this;
     }
@@ -234,6 +88,7 @@ class User
     }
 
     /**
+     * @ORM\PrePersist
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -241,8 +96,8 @@ class User
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
-
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
         return $this;
     }
 
@@ -260,13 +115,14 @@ class User
      */
     public function __construct()
     {
+    	parent::__construct();
         $this->mcqs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add mcqs
      *
-     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     * @param \TactFactory\WebServiceBundle\Entity\MCQ $mcqs
      * @return User
      */
     public function addMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
@@ -279,7 +135,7 @@ class User
     /**
      * Remove mcqs
      *
-     * @param \OC\PlatformBundle\Entity\MCQ $mcqs
+     * @param \TactFactory\WebServiceBundle\Entity\MCQ $mcqs
      */
     public function removeMcq(\TactFactory\WebServiceBundle\Entity\MCQ $mcqs)
     {
@@ -295,39 +151,8 @@ class User
     {
         return $this->mcqs;
     }
+    
 
-    /**
-     * Add roles
-     *
-     * @param \TactFactory\WebServiceBundle\Entity\Role $roles
-     * @return User
-     */
-    public function addRole(\TactFactory\WebServiceBundle\Entity\Role $roles)
-    {
-        $this->roles[] = $roles;
-
-        return $this;
-    }
-
-    /**
-     * Remove roles
-     *
-     * @param \TactFactory\WebServiceBundle\Entity\Role $roles
-     */
-    public function removeRole(\TactFactory\WebServiceBundle\Entity\Role $roles)
-    {
-        $this->roles->removeElement($roles);
-    }
-
-    /**
-     * Get roles
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRoles()
-    {
-        return $this->roles;
-    }
 
     /**
      * Add results
@@ -360,5 +185,38 @@ class User
     public function getResults()
     {
         return $this->results;
+    }
+
+    /**
+     * Add teams
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Team $teams
+     * @return User
+     */
+    public function addTeam(\TactFactory\WebServiceBundle\Entity\Team $teams)
+    {
+        $this->teams[] = $teams;
+
+        return $this;
+    }
+
+    /**
+     * Remove teams
+     *
+     * @param \TactFactory\WebServiceBundle\Entity\Team $teams
+     */
+    public function removeTeam(\TactFactory\WebServiceBundle\Entity\Team $teams)
+    {
+        $this->teams->removeElement($teams);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }

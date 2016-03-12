@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\QuestionRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Question
 {
@@ -34,7 +35,7 @@ class Question
     private $media;
 	
      /**
-    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Answer", mappedBy="question")
+    * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Answer", mappedBy="question",cascade={"remove"})
     */
     private $answers;
 
@@ -93,6 +94,7 @@ class Question
     }
 
     /**
+     * @ORM\PreUpdate
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
@@ -100,7 +102,7 @@ class Question
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }
@@ -116,6 +118,7 @@ class Question
     }
 
     /**
+     * @ORM\PrePersist
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -123,7 +126,8 @@ class Question
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }
