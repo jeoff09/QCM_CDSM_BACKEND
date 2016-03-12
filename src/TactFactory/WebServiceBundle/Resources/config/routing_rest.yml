@@ -1,0 +1,5 @@
+#src/TactFactory/WebServiceBundle/Resources/config/routing_rest.yml
+users : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:UserRest"
+  name_prefix:  api_

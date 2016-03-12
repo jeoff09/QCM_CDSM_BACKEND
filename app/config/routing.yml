@@ -6,9 +6,16 @@ tact_factory_web_service:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
-    
+
+#FOS_USER    
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 user_bundle:
    resource: "@TactFactoryWebServiceBundle/Resources/config/routing.yml"
+
+#REST 
+rest : 
+  type : rest 
+  resource : "routing_rest.yml"
+  prefix : /api
