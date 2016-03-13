@@ -1,9 +1,8 @@
 <?php
 namespace TactFactory\WebServiceBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use TactFactory\WebServiceBundle\Entity\User;
 
 class UserRestController extends Controller
 {
@@ -13,5 +12,13 @@ class UserRestController extends Controller
       throw $this->createNotFoundException();
     }
     return $user;
+  }
+  
+  public function getUsersAction()
+  {
+  	$users = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:User')->findAll();
+
+  	
+  	return $users;
   }
 }

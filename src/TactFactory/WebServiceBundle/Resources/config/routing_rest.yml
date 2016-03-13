@@ -3,3 +3,27 @@ users :
   type: rest
   resource:     "TactFactoryWebServiceBundle:UserRest"
   name_prefix:  api_
+media : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:MediaRest"
+  name_prefix:  api_
+typ : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:TypRest"
+  name_prefix:  api_
+team : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:TeamRest"
+  name_prefix:  api_
+mcq : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:McqRest"
+  name_prefix:  api_
+answer : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:AnswerRest"
+  name_prefix:  api_
+question : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:QuestionRest"
+  name_prefix:  api_
