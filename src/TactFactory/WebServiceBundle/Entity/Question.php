@@ -3,6 +3,8 @@
 namespace TactFactory\WebServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Question
@@ -10,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\QuestionRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("All")
  */
 class Question
 {
@@ -19,6 +22,7 @@ class Question
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -26,22 +30,26 @@ class Question
      * @var string
      *
      * @ORM\Column(name="que", type="string", length=255)
+     * @Expose()
      */
     private $que;
 
 	/**
     * @ORM\OneToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Media" ,cascade={"remove"})
+    * @Expose()
     */
     private $media;
 	
      /**
     * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Answer", mappedBy="question",cascade={"remove"})
+    * @Expose()
     */
     private $answers;
 
      /**
      * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $mcq;
 
@@ -49,6 +57,7 @@ class Question
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
+     * @Expose()
      */
     private $updatedAt;
 

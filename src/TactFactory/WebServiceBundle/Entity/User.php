@@ -3,6 +3,10 @@
 namespace TactFactory\WebServiceBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * User
@@ -10,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="fos_user")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("all") 
  */
 class User extends BaseUser
 {
@@ -19,11 +24,13 @@ class User extends BaseUser
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected  $id;
     
     /**
     * @ORM\ManyToMany(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", cascade={"persist"})
+    * @Expose
     */
     private $mcqs;
 	
@@ -33,11 +40,14 @@ class User extends BaseUser
 	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
 	 *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
 	 * )
+	 * 
+	 * @Expose
 	 */
 	protected $teams;
 	
     /**
     * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Result", mappedBy="usr")
+    * 
     */
     private $results;
     /**
@@ -51,6 +61,7 @@ class User extends BaseUser
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
+     * @Expose
      */
     private $createdAt;
     /**
@@ -80,7 +91,7 @@ class User extends BaseUser
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {

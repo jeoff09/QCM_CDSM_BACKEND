@@ -3,6 +3,10 @@
 namespace TactFactory\WebServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Result
@@ -10,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="result")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\ResultRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("All")
  */
 class Result
 {

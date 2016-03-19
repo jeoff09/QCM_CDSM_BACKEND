@@ -17,7 +17,18 @@ class AnswerRestController extends Controller
   public function getAnswersAction()
   {
   	$answers = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:Answer')->findAll();
-
+  	
+  	return $answers;
+  }
+  
+  /*
+   * return all answers by question
+   */
+  public function getAnswersquestionAction($question_id)
+  {
+  	
+  	$answers = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:Answer')->findByquestion($question_id);
+  
   	
   	return $answers;
   }
