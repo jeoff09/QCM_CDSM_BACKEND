@@ -3,6 +3,8 @@
 namespace TactFactory\WebServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Typ
@@ -10,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="typ")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\TypRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("All")
  */
 class Typ
 {
@@ -19,6 +22,8 @@ class Typ
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
+     * 
      */
     private $id;
 
@@ -26,6 +31,7 @@ class Typ
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Expose()
      */
     private $name;
 
@@ -38,6 +44,7 @@ class Typ
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
+     * @Expose()
      */
     private $updatedAt;
 

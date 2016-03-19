@@ -3,6 +3,8 @@
 namespace TactFactory\WebServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Answer
@@ -10,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="answer")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\AnswerRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("All")
  */
 class Answer
 {
@@ -19,6 +22,7 @@ class Answer
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -26,12 +30,14 @@ class Answer
      * @var string
      *
      * @ORM\Column(name="ans", type="string", length=255, unique=true)
+     * @Expose
      */
     private $ans;
 
      /**
      * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Question", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $question;
 
@@ -39,6 +45,7 @@ class Answer
      * @var bool
      *
      * @ORM\Column(name="is_true", type="boolean")
+     * @Expose
      */
     private $isTrue;
 
@@ -46,6 +53,7 @@ class Answer
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
+     *@Expose
      */
     private $createdAt;
 

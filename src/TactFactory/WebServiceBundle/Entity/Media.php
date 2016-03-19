@@ -3,6 +3,8 @@
 namespace TactFactory\WebServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Media
@@ -10,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="media")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("All")
  */
 class Media
 {
@@ -19,6 +22,7 @@ class Media
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -26,6 +30,7 @@ class Media
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Expose()
      */
     private $name;
     
@@ -34,12 +39,14 @@ class Media
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
+     * @Expose()
      */
     private $url;
 
      /**
      * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Typ", inversedBy="medias")
      * @ORM\JoinColumn(nullable=false)
+     * @Expose()
      */
     private $typ;
 
@@ -47,6 +54,7 @@ class Media
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
+     * @Expose()
      */
     private $updatedAt;
 

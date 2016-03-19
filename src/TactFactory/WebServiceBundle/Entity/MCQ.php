@@ -4,6 +4,8 @@ namespace TactFactory\WebServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\PreUpdate;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * MCQ
@@ -11,6 +13,7 @@ use Doctrine\ORM\Mapping\PreUpdate;
  * @ORM\Table(name="m_c_q")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\MCQRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("All")
  */
 class MCQ
 {
@@ -20,6 +23,7 @@ class MCQ
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -27,6 +31,7 @@ class MCQ
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Expose
      */
     private $name;
 
@@ -34,6 +39,7 @@ class MCQ
      * @var \DateTime
      *
      * @ORM\Column(name="date_end", type="datetime", nullable=true)
+     * @Expose()
      */
     private $dateEnd;
 
@@ -41,6 +47,7 @@ class MCQ
      * @var \DateTime
      *
      * @ORM\Column(name="date_start", type="datetime")
+     * @Expose()
      */
     private $dateStart;
 
@@ -48,17 +55,20 @@ class MCQ
      * @var int
      *
      * @ORM\Column(name="duration", type="smallint")
+     * @Expose()
      */
     private $duration;
 
      /**
      * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Category", inversedBy="mcqs")
      * @ORM\JoinColumn(nullable=false)
+     * @Expose()
      */
     private $category;
 
      /**
     * @ORM\OneToMany(targetEntity="TactFactory\WebServiceBundle\Entity\Question", mappedBy="mcq",cascade={"remove"})
+    * @Expose()
     */
     private $questions;
 
@@ -73,6 +83,7 @@ class MCQ
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
+     * @Expose()
      */
     private $updatedAt;
 

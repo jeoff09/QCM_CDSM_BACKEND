@@ -2,6 +2,8 @@
 
 namespace TactFactory\WebServiceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Team
@@ -9,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="team")
  * @ORM\Entity(repositoryClass="TactFactory\WebServiceBundle\Repository\TeamRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("All")
  */
 class Team 
 {
@@ -18,6 +21,7 @@ class Team
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     protected  $id;
 
@@ -25,6 +29,7 @@ class Team
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Expose()
      */
     private $name;
 
@@ -37,6 +42,7 @@ class Team
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
+     * @Expose()
      */
     private $updatedAt;
     
@@ -44,6 +50,7 @@ class Team
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
+     * @Expose()
      */
     private $createdAt;
     
