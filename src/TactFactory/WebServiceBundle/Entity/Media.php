@@ -192,4 +192,12 @@ class Media
     {
         return $this->name;
     }
+    
+    /**
+     * Return the value of que when sonata call  question media
+     * @return string
+     */
+    public function __toString() {
+    	return (string)$this->name;
+    }
 }

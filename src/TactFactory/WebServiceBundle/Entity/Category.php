@@ -176,4 +176,12 @@ class Category
     {
         return $this->mcqs;
     }
+    
+    /**
+     *
+     * @return string
+     */
+    public function __toString() {
+    	return (string)$this->name;
+    }
 }

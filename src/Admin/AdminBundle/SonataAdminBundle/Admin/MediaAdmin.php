@@ -16,7 +16,8 @@ class MediaAdmin extends Admin
  // setup the defaut sort column and order
     protected $datagridValues = array(
         '_sort_order' => 'DESC',
-        '_sort_by' => 'createdAt'
+        '_sort_by' => 'createdAt',
+    	'_sort_by'=>'typ'
     );
  
     protected function configureFormFields(FormMapper $formMapper)
@@ -24,6 +25,7 @@ class MediaAdmin extends Admin
         $formMapper
             ->add('name')
             ->add('url')
+            ->add('typ', null, array('label' => "type de media"))
         ;
     }
  
@@ -31,6 +33,7 @@ class MediaAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('typ', null, array('label' => "type de media"))
         ;
     }
  
@@ -41,6 +44,7 @@ class MediaAdmin extends Admin
             ->add('url')
             ->add('createdAt')
             ->add('updatedAt')
+            ->add('typ')
             ->add('_action', 'actions', array(
             		'actions' => array(
             				'view' => array(),
@@ -48,13 +52,15 @@ class MediaAdmin extends Admin
             				'delete' => array(),
             		)
             ))
+            
         ;
     }
  
-    protected function configureShowField(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
             ->add('name')
+            ->add('typ', null, array('label' => "type de media"))
             ->add('url')
             ->add('createdAt')
             ->add('updatedAt')

@@ -177,4 +177,11 @@ class Typ
     {
         return $this->medias;
     }
+    /**
+     * 
+     * @return string
+     */
+    public function __toString() {
+    	return (string)$this->name;
+    }
 }

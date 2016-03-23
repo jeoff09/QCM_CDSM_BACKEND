@@ -217,4 +217,12 @@ class Result
     {
         return $this->createdAt;
     }
+    
+    public function __toString() {
+
+    		$string = "resultat";
+    	
+    	
+    	return $string;
+    }
 }

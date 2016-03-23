@@ -7,6 +7,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use TactFactory\WebServiceBundle\Entity\Typ;
 
 class TypAdmin extends Admin
 {
@@ -36,6 +38,25 @@ class TypAdmin extends Admin
             ->addIdentifier('name')
             ->add('createdAt')
             ->add('updatedAt')
+            ->add('medias', null, array(
+            'associated_property' => 'name'))
+            ->add('_action', 'actions', array(
+            		'actions' => array(
+            				'edit' => array(),
+            				'delete' => array(),
+            		)
+            ))
+            
+    
         ;
-    }// Your code will be here
+    }
+    
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+    	$showMapper
+    	->add('name')
+    	->add('createdAt')
+    	->add('updatedAt')
+    	;
+    }
 }

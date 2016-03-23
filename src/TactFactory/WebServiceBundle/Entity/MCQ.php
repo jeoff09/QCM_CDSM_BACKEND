@@ -340,4 +340,12 @@ class MCQ
     {
         return $this->results;
     }
+    
+    /**
+     *
+     * @return string
+     */
+    public function __toString() {
+    	return (string)$this->name;
+    }
 }

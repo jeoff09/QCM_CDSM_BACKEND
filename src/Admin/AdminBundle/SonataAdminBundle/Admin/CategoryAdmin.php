@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use TactFactory\WebServiceBundle\Entity\Category;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class CategoryAdmin extends Admin
 {
@@ -37,6 +38,22 @@ class CategoryAdmin extends Admin
             ->addIdentifier('name')
             ->add('createdAt')
             ->add('updatedAt')
+            ->add('_action', 'actions', array(
+            		'actions' => array(
+            				'view' => array(),
+            				'edit' => array(),
+            				'delete' => array(),
+            		)
+            ))
         ;
+    }
+    
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+    	$showMapper
+    	->add('name')
+    	->add('createdAt')
+    	->add('updatedAt')
+    	;
     }
 }
