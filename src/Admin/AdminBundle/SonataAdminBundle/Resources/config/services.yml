@@ -1,0 +1,28 @@
+services:
+    Admin.AdminBundle.SonataAdminBundle.Admin.category:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: QCM, label: "Categorie de QCM" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Category
+            - 'AdminAdminBundleSonataAdminBundle:CategoryAdmin'
+            
+    Admin.AdminBundle.SonataAdminBundle.Admin.media:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\MediaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Media, label: "Media de question" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Media
+            - 'AdminAdminBundleSonataAdminBundle:MediaAdmin'
+            
+    Admin.AdminBundle.SonataAdminBundle.Admin.typ:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\TypAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Media, label: "Types de media" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Typ
+            - 'AdminAdminBundleSonataAdminBundle:TypAdmin'
+
