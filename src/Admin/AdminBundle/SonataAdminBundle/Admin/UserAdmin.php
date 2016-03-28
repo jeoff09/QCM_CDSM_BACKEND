@@ -17,7 +17,6 @@ class UserAdmin extends Admin
         '_sort_by' => 'username',
     	'_sort_by' => 'updatedAt',
     	'_sort_by' => 'createdAt',
-    	'_sort_by' => 'roles',
     	'_sort_by' => 'teams'
     );
  
@@ -38,7 +37,6 @@ class UserAdmin extends Admin
         $datagridMapper
             ->add('username')
             ->add('roles')
-            ->add('mcqs',null, array('label' => "Questionnaires"))
             ->add('teams',null, array('label' => "Groupes"))
         ;
     }

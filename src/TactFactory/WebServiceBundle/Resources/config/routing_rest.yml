@@ -27,3 +27,7 @@ question :
   type: rest
   resource:     "TactFactoryWebServiceBundle:QuestionRest"
   name_prefix:  api_
+result : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:ResultRest"
+  name_prefix:  api_
