@@ -236,4 +236,11 @@ class Question
     {
         return $this->answers;
     }
+    /**
+     * Return the value of que when sonata call answer question
+     * @return string
+     */
+    public function __toString() {
+    	return (string)$this->que;
+    }
 }

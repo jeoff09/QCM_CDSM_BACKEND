@@ -230,4 +230,12 @@ class User extends BaseUser
     {
         return $this->teams;
     }
+    
+    /**
+     *
+     * @return string
+     */
+    public function __toString() {
+    	return (string)$this->username;
+    }
 }

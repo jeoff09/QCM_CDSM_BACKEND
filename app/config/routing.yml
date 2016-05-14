@@ -1,3 +1,9 @@
+admin_admin_bundle_sonata_admin:
+    resource: "@AdminAdminBundleSonataAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
 tact_factory_web_service:
     resource: "@TactFactoryWebServiceBundle/Controller/"
     type:     annotation
@@ -19,3 +25,13 @@ rest :
   type : rest 
   resource : "routing_rest.yml"
   prefix : /api
+
+  #SONATA_ADMIN
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+ 
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
