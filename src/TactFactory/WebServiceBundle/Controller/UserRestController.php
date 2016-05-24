@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TactFactory\WebServiceBundle\Entity\User;
 use TactFactory\WebServiceBundle\Entity\MCQ;
 use TactFactory\WebServiceBundle\Entity\Team;
-
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 class UserRestController extends Controller
 {  
 public function getUserAction($username){
@@ -56,6 +56,24 @@ public function getUserAction($username){
   		$mcqs = $user->getMcqs();
   		
   	return $mcqs;
+  }
+  
+  public function postUserauthAction(){
+  	$login = $this->getRequest()->get('login');
+  	$pwd = $this->getRequest()->get('password');
+  	
+  	$user_manager = $this->get('fos_user.user_manager');
+  	$factory = $this->get('security.encoder_factory');  	
+  	$user = $user_manager->findUserByUsername($login);
+
+	if (is_null($user)){
+  		$bool = false;
+  		return $bool;
+  	}
+  	$encoder = $factory->getEncoder($user);
+  	$bool = ($encoder->isPasswordValid($user->getPassword(),$pwd,$user->getSalt())) ? true : false;
+  
+  	return $bool;
   }
 
 }

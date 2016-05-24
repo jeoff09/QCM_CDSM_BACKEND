@@ -26,6 +26,7 @@ class MCQAdmin extends Admin
             ->add('duration')
             ->add('dateEnd')
             ->add('dateStart')
+            ->add('isActif')
             ->add('category',null, array('label' => "Categorie"))
         ;
     }
@@ -47,6 +48,7 @@ class MCQAdmin extends Admin
             ->add('duration')
             ->add('dateEnd')
             ->add('dateStart')
+            ->add('isActif')
             ->add('questions')
             ->add('category')
             ->add('createdAt')
@@ -69,6 +71,7 @@ class MCQAdmin extends Admin
  			->add('duration')
             ->add('dateEnd')
             ->add('dateStart')
+            ->add('isActif')
             ->add('category',null, array('label' => "Categorie"))
             ->add('questions', null, array('label' => "Liste de questions"))
             ->add('createdAt')
