@@ -39,15 +39,16 @@ class CategoryRestController extends Controller
     $categories = array();
     $mcqs = array();
     $tempMcqs = array();
-    $team = new Team();
-    $tempMcq = new Mcq();
+    $teams = array();
+    $tempMcq = new MCQ();
     // get User by id 
     $user = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:User')->findOneByid($userId);
     //get User Team
-    $team = $user->getTeam();
-    if ($team != null)
+    $teams = $user->getTeams();
+    if ($teams != null)
     {
-      $tempMcqs = self::getMcqList($team,$user);
+      $tempMcqs = self::getMcqList($teams,$user);
+      
       foreach ($tempMcqs as $mcq_id){
         $tempMcq = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:MCQ')->findOneById($mcq_id);
         array_push($mcqs, $tempMcq);
@@ -71,22 +72,25 @@ class CategoryRestController extends Controller
   
   /**
    * Get user's mcq
-   * @param Team $team
+   * @param array<Team> $teams
    * @param User $user
    * @return mcq's id list
    */
-  public static function getMcqList($team,$user)
+  public static function getMcqList($teams,$user)
   {
-    $mcqs = array();
     $teamMcqs = array();
     $userMcqs = array();
     $diff = array();
     $temp = array();
-    //Get Mcq's id in team to insert into a temp list
-    foreach ($team->getMcqs() as $mcq)
+    
+    foreach ($teams as $team)
     {
-      //Insert Mcq's id in temporary list
-      array_push($teamMcqs, $mcq->getId());
+    	//Get Mcq's id in team to insert into a temp list
+   		 foreach ($team->getMcqs() as $mcq)
+    	{
+      		//Insert Mcq's id in temporary list
+      		array_push($teamMcqs, $mcq->getId());
+    	}
     }
     
     //Get Mcq's id in user to insert into a temp list
