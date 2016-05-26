@@ -24,38 +24,94 @@ class McqRestController extends Controller
   	return $mcqs;
   }
 
-  public function getMcqsuserAction($user_id = 1, $category_id = 3){
-     //$user_id = $this->getRequest()->get('userId');
-    //$category_id = $this->getRequest()->get('categoryId');
+  public function postMcqsuserAction(){
+    $user_id = $this->getRequest()->get('user_id');
+    $category_id = $this->getRequest()->get('categ_id');
     $user = new User();
-    $mcq = new Mcq();
-     $listMcqIds = array();
-     $mcqs = array();
+    $tempMcq = new MCQ();
+    $mcqs = array();
+    $user_mcqs  = array();
+    $tempIdMcqs = array();
      
     $user = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:User')->findOneById($user_id);
- 
-    //If user has a team
-     if ($user->getTeam() != null){
-       //Get list mcq id
-       $listMcqIds = CategoryRestController::getMcqList($user->getTeam(), $user);
-       //Get Category 's mcqs
-       foreach ($listMcqIds as $mcq_id){
-        //Get mcq
-        $mcq = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:MCQ')->findOneById($mcq_id);
-         //get mcq user is in category selected by user
-         if ($mcq->getCategory()->getId() == $category_id){
-           array_push($mcqs, $mcq);
+    $teams = $user->getTeams();
+
+    if ($teams != null)
+    {
+        $tempIdMcqs = self::getMcqList($teams,$user);
+
+        foreach ($tempIdMcqs as $mcq_id) {
+          
+          $tempMcq = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:MCQ')->findOneById($mcq_id);
+          if($tempMcq->getCategory()->getId() == $category_id)
+          {
+            array_push($mcqs, $tempMcq);
+          }
+          else{
+
+          }
         }
-      }
+       
      }
      else{
-       //Get list user's category mcq id
-       foreach ($user->getMcqs() as $mcq){
-         if ($mcq->getCategory()->getId() == $category_id){
-           array_push($mcqs, $mcq);
+       
+          $user_mcqs = $user->getMcqs();
+
+          foreach ($user_mcqs as $mcq) {
+            
+            if($mcq->getId() == $category_id)
+            {
+              array_push($mcqs, $mcq);
+            }
+
+          }
+
          }
-       }
-     }
+       
      return $mcqs;
-   }
+  }
+
+   /**
+   * Get user's mcq
+   * @param array<Team> $teams
+   * @param User $user
+   * @return mcq's id list
+   */
+  public static function getMcqList($teams,$user)
+  {
+    $teamMcqs = array();
+    $userMcqs = array();
+    $diff = array();
+    $temp = array();
+    
+    foreach ($teams as $team)
+    {
+      //Get Mcq's id in team to insert into a temp list
+       foreach ($team->getMcqs() as $mcq)
+      {
+          //Insert Mcq's id in temporary list
+          array_push($teamMcqs, $mcq->getId());
+      }
+    }
+    
+    //Get Mcq's id in user to insert into a temp list
+    foreach ($user->getMcqs() as $mcq){
+      array_push($userMcqs, $mcq->getId());
+    }
+    
+    //Return list id mcqs for the User
+    $temp = array_merge($userMcqs,$teamMcqs);
+    $diff = array_unique($temp);
+      
+    //Add mcq in tempo list
+    /*foreach ($diff as $mcq_id){
+      $tempMcq = $this->getDoctrine()->getRepository('IIAWebServiceBundle:Mcq')->findOneById($mcq_id);
+      array_push($mcqs, $tempMcq);
+    }*/
+    
+    //return $mcqs;
+    return $diff;
+  }
+
+
 }
