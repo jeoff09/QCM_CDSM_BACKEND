@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TactFactory\WebServiceBundle\Entity\MCQ;
 use TactFactory\WebServiceBundle\Entity\Category;
 use TactFactory\WebServiceBundle\Controller\CategoryRestController;
+use TactFactory\WebServiceBundle\Entity\User;
 
 class McqRestController extends Controller
 {
@@ -59,7 +60,7 @@ class McqRestController extends Controller
 
           foreach ($user_mcqs as $mcq) {
             
-            if($mcq->getId() == $category_id)
+            if($mcq->getCategory()->getId() == $category_id)
             {
               array_push($mcqs, $mcq);
             }
