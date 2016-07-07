@@ -4,6 +4,7 @@ namespace TactFactory\WebServiceBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TactFactory\WebServiceBundle\Entity\Result;
 use TactFactory\WebServiceBundle\Json_Entity\Result_Json;
+use Symfony\Component\HttpFoundation\Response;
 
 use JMS\Serializer\SerializerBuilder;
 use FOS\RestBundle\Tests\Fixtures\User;
@@ -12,10 +13,10 @@ use Proxies\__CG__\TactFactory\WebServiceBundle\Entity\MCQ;
 class ResultRestController extends Controller {
 	
 	
-	public function postResultAction($jsonData)
+	public function postResultAction()
 	{
+		$jsonData = $this->getRequest()->get('result');
 		$result = new Result();
-		$user = new  User();
 		$mcq = new  MCQ();
 		$score = 0;
 		$serializerBuilder = new  SerializerBuilder();
@@ -79,17 +80,26 @@ class ResultRestController extends Controller {
 
 			if($countAnswerTrue == count($list_answers_true) && $errorAnswerFalse == 0)
 			{
-				$score =$score +1 ;
+				$score = $score + 1 ;
 			}
 		}
 		
 		// récupèrer la question ensuite récupère les id ou l'id de la réponses bonne si dan la liste  + 1 si en case de double réponse 1 seule seulement 0 
 		// get IDAnswer QUestion 
 		//si answer dans la list +1 sinon 0 
-
+		$em = $this->getDoctrine()->getManager();
 		
-		print_r($score);
-		return $result_mcq;
+		$result->setScore($score);
+		$result->setMcq($mcq);
+		$result->setUsr($user);
+		$result->setIsCompleted(true);
+
+    	// tells Doctrine you want to (eventually) save the Product (no queries yet)
+    	$em->persist($result);
+
+    	// actually executes the queries (i.e. the INSERT query)
+   	 	$em->flush();
+		return true;
 	}
 	
 	public function getResultAction()

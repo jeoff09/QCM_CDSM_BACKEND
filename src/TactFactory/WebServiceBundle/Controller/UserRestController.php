@@ -2,11 +2,10 @@
 namespace TactFactory\WebServiceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use TactFactory\WebServiceBundle\Entity\User;
 use TactFactory\WebServiceBundle\Entity\MCQ;
 use TactFactory\WebServiceBundle\Entity\Team;
+use TactFactory\WebServiceBundle\Entity\User;
 use TactFactory\WebServiceBundle\Json_Entity\User_Json;
-use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 class UserRestController extends Controller
 {  
   public function getUserAction($username){
@@ -68,14 +67,42 @@ class UserRestController extends Controller
   	$user = $user_manager->findUserByUsername($login);
 
 	if (is_null($user)){
-  		$bool = false;
-  		return $bool;
+  		return false;
   	}
-  	$encoder = $factory->getEncoder($user);
-  	$bool = ($encoder->isPasswordValid($user->getPassword(),$pwd,$user->getSalt())) ? true : false;
-  
-  	return $bool;
+  	else 
+  	{
+  		$encoder = $factory->getEncoder($user);
+  		$bool = ($encoder->isPasswordValid($user->getPassword(),$pwd,$user->getSalt())) ? true : false;
+  		if($bool == true)
+  		{
+  			$User_Json = new User_Json();
+  			$User_Json = self::FlowUserInformation($user);
+  			return $User_Json;
+  		}
+  		else {
+  			return false;
+  		}
+  	
+  	}
+
+ 
+  	return false;
   }
+  
+
+  private function FlowUserInformation($user){
+
+  	//Create user with specific information to create json flow
+  	$userJson = new User_Json();
+  	$userJson->setId($user->getId());
+  	$userJson->setUsername($user->getUsername());
+  	$userJson->setEmail($user->getEmail());
+  	$userJson->setLastLogin($user->getLastLogin());
+  	$userJson->setUpdatedAt($user->getUpdatedAt());
+  
+  	return $userJson;
+  }
+  
   /**
     * User flow information
     * @return json

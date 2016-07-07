@@ -23,6 +23,7 @@ class TeamAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('mcqs',null, array('label' => "Questionnaires"))
         ;
     }
  

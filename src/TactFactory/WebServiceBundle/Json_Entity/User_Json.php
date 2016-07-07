@@ -1,37 +1,28 @@
 <?php
  
- +namespace IIA\WebServiceBundle\EntityJson;
+ namespace TactFactory\WebServiceBundle\Json_Entity;
  
  use JMS\Serializer\Annotation\Type;
- use \Doctrine\Common\Collections\ArrayCollection;
  
- /**
-  * 
-  * @author antoine Trouvé
-  * Class to transform a user's to a user with information for json flow in an object
-  */
- class UserJson {
+
+ class User_Json {
  
  	/**
- 	 * user's id
  	 * @Type("integer")
  	 */
  	private $id;
  
  	/**
- 	 * User's name
  	 * @Type("string")
  	 */
  	private $username;
  	
  	/**
- 	 * User's email
  	 * @Type("string")
  	 */
  	private $email;
  	
  	/**
- 	 * User's last login
  	 * @Type("DateTime")
  	 */
  	private $lastlogin;
