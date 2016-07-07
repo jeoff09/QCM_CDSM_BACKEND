@@ -1,0 +1,81 @@
+services:
+    Admin.AdminBundle.SonataAdminBundle.Admin.category:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des QCM", label: "Categorie de QCM" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Category
+            - 'AdminAdminBundleSonataAdminBundle:CategoryAdmin'
+            
+    Admin.AdminBundle.SonataAdminBundle.Admin.media:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\MediaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des Media", label: "Media d'une question" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Media
+            - 'AdminAdminBundleSonataAdminBundle:MediaAdmin'
+            
+    Admin.AdminBundle.SonataAdminBundle.Admin.typ:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\TypAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des Media", label: "Types de media" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Typ
+            - 'AdminAdminBundleSonataAdminBundle:TypAdmin'
+
+    Admin.AdminBundle.SonataAdminBundle.Admin.Answer:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\AnswerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des QCM", label: "Reponses" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Answer
+            - 'AdminAdminBundleSonataAdminBundle:AnswerAdmin'
+
+    Admin.AdminBundle.SonataAdminBundle.Admin.MCQ:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\MCQAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des QCM", label: "Questionnaires" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\MCQ
+            - 'AdminAdminBundleSonataAdminBundle:MCQAdmin'
+            
+    Admin.AdminBundle.SonataAdminBundle.Admin.Question:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\QuestionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des QCM", label: "Questions" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Question
+            - 'AdminAdminBundleSonataAdminBundle:QuestionAdmin'
+            
+    Admin.AdminBundle.SonataAdminBundle.Admin.Team:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\TeamAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestions des utilisateurs", label: "Groupes" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Team
+            - 'AdminAdminBundleSonataAdminBundle:TeamAdmin'
+            
+    Admin.AdminBundle.SonataAdminBundle.Admin.User:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestions des utilisateurs", label: "Utilisateurs" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\User
+            - 'AdminAdminBundleSonataAdminBundle:UserAdmin'
+
+    Admin.AdminBundle.SonataAdminBundle.Admin.Result:
+        class: Admin\AdminBundle\SonataAdminBundle\Admin\ResultAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Resultats", label: "Resultats" }
+        arguments:
+            - ~
+            - TactFactory\WebServiceBundle\Entity\Result
+            - 'AdminAdminBundleSonataAdminBundle:ResultAdmin'
