@@ -26,7 +26,6 @@ class UserAdmin extends Admin
             ->add('username')
             ->add('email')
             ->add('password')
-            ->add('roles')
             ->add('teams',null, array('label' => "Groupes"))
             ->add('mcqs',null, array('label' => "Questionnaires"))
         ;
@@ -46,7 +45,6 @@ class UserAdmin extends Admin
         $listMapper
             ->addIdentifier('username')
             ->add('email')
-            ->add('roles')
             ->add('teams')
             ->add('mcqs')
             ->add('createdAt')

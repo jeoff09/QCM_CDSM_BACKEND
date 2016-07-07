@@ -37,7 +37,7 @@ class Answer
      /**
      * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\Question", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
-     * 
+     * @Expose()
      */
     private $question;
 
@@ -52,15 +52,15 @@ class Answer
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime")
-     *@Expose
+     *@ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
+     *@var \DateTime
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     *@ORM\Column(name="updated_at", type="datetime")
+     *@Expose()
      */
     private $updatedAt;
 
@@ -154,7 +154,7 @@ class Answer
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->$updatedAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }

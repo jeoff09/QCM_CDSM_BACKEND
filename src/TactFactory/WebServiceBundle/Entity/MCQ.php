@@ -114,6 +114,13 @@ class MCQ
 
         return $this;
     }
+    /**
+    * @var bool
+    *
+    * @ORM\Column(name="is_Actif", type="boolean")
+    * @Expose
+    */
+   private $isActif;
 
     /**
      * Get name
@@ -182,6 +189,28 @@ class MCQ
         $this->duration = $duration;
 
         return $this;
+    }
+    
+    /** Set is_Actif
+    *
+    * @param boolean $isActif
+    * @return MCQ
+    */
+    public function setIsActif($isActif)
+    {
+    	$this->isActif = $isActif;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get is_Actif
+     *
+     * @return boolean
+     */
+    public function getIsActif()
+    {
+    	return $this->isActif;
     }
 
     /**

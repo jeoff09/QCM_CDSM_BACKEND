@@ -49,7 +49,7 @@ class Question
      /**
      * @ORM\ManyToOne(targetEntity="TactFactory\WebServiceBundle\Entity\MCQ", inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
-     * 
+     *@Expose()
      */
     private $mcq;
 

@@ -122,7 +122,7 @@ class Category
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->$updatedAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
 
         return $this;
     }

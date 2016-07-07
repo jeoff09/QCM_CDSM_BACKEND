@@ -2,13 +2,13 @@
 namespace TactFactory\WebServiceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use TactFactory\WebServiceBundle\Entity\User;
 use TactFactory\WebServiceBundle\Entity\MCQ;
 use TactFactory\WebServiceBundle\Entity\Team;
-
+use TactFactory\WebServiceBundle\Entity\User;
+use TactFactory\WebServiceBundle\Json_Entity\User_Json;
 class UserRestController extends Controller
 {  
-public function getUserAction($username){
+  public function getUserAction($username){
         $user = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:User')->findOneByUsername($username);
         $mcqUser = array();
         $mcqTeam = array();
@@ -27,7 +27,7 @@ public function getUserAction($username){
 	            array_push($mcqTeam, $mcq->getId());
 	            
 	        }
-		}
+		    }
         // get the list of mcq_id into my user
         foreach ($user->getMcqs() as $mcq){
             array_push($mcqUser, $mcq->getId());
@@ -46,7 +46,7 @@ public function getUserAction($username){
             throw $this->createNotFoundException();
         }
         return $user;
-}
+  }
     
   public function getMcquserAction($user_id)
   {
@@ -57,5 +57,85 @@ public function getUserAction($username){
   		
   	return $mcqs;
   }
+  
+  public function postUserauthAction(){
+  	$login = $this->getRequest()->get('login');
+  	$pwd = $this->getRequest()->get('password');
+  	
+  	$user_manager = $this->get('fos_user.user_manager');
+  	$factory = $this->get('security.encoder_factory');  	
+  	$user = $user_manager->findUserByUsername($login);
+
+	if (is_null($user)){
+  		return false;
+  	}
+  	else 
+  	{
+  		$encoder = $factory->getEncoder($user);
+  		$bool = ($encoder->isPasswordValid($user->getPassword(),$pwd,$user->getSalt())) ? true : false;
+  		if($bool == true)
+  		{
+  			$User_Json = new User_Json();
+  			$User_Json = self::FlowUserInformation($user);
+  			return $User_Json;
+  		}
+  		else {
+  			return false;
+  		}
+  	
+  	}
+
+ 
+  	return false;
+  }
+  
+
+  private function FlowUserInformation($user){
+
+  	//Create user with specific information to create json flow
+  	$userJson = new User_Json();
+  	$userJson->setId($user->getId());
+  	$userJson->setUsername($user->getUsername());
+  	$userJson->setEmail($user->getEmail());
+  	$userJson->setLastLogin($user->getLastLogin());
+  	$userJson->setUpdatedAt($user->getUpdatedAt());
+  
+  	return $userJson;
+  }
+  
+  /**
+    * User flow information
+    * @return json
+   */
+   public function postUserinformationAction(){
+     $username = $this->getRequest()->get('username');
+     $user = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:User')->findOneByUsername($username);
+
+    
+     //Create user with specific information to create json flow
+     $userJson = new User_Json();
+     $userJson->setId($user->getId());
+     $userJson->setUsername($user->getUsername());
+     $userJson->setEmail($user->getEmail());
+     $userJson->setLastLogin($user->getLastLogin());
+     $userJson->setUpdatedAt($user->getUpdatedAt());
+     
+      return $userJson;
+    }
+    
+   /**
+    * Not used
+    * @param string $username
+    */
+   public function postUserProfilAction($username){
+     $username = $this->getRequest()->get('username');
+     $temp = $this->getDoctrine()->getRepository('TactFactoryWebServiceBundle:User')->findOneByUsername($username);
+     $user = new User();
+     $user->setUsername($temp->getUsername());
+     $user->setEmail($temp->getEmail());
+     $user->setLastLogin($temp->getLastLogin());
+     $user->setUpdatedAt($temp->getUpdatedAt());
+     return $user;
+   }
 
 }

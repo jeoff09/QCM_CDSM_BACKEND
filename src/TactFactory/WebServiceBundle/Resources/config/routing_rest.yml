@@ -31,3 +31,7 @@ result :
   type: rest
   resource:     "TactFactoryWebServiceBundle:ResultRest"
   name_prefix:  api_
+category : 
+  type: rest
+  resource:     "TactFactoryWebServiceBundle:CategoryRest"
+  name_prefix:  api_  
