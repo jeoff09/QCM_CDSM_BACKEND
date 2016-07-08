@@ -1,0 +1,111 @@
+﻿<html>
+	
+<head>
+	<title>Versionning et code source</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Documentation de maintenance.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Versionningetcodesource");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Versionning et code source</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Fonctionnementduprojet.html">Fonctionnement du projet</a> &rsaquo;&rsaquo; <a href="Gestiondeselementsfonctionnels.html">Gestion des &eacute;l&eacute;ments fonctionnels</a> &rsaquo;&rsaquo; <a href="Architecturelogiciel.html">Architecture logiciel</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Architecturelogiciel.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Composantslogiciels.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Environnementdedeveloppement.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p class="rvps3"><span class="rvts6"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">Versionning et code source</span></p>
+<p class="rvps3"><span class="rvts30"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Pour permettre le développement optimal de la solution le code source se doit d’être versionné.</span></p>
+<p class="rvps2"><span class="rvts6">Chaque étape clé du développement doit être versionné à partir de la branche développement. Le nom de cette étape définira le nom de la branche associée.</span></p>
+<p class="rvps2"><span class="rvts6"> Le fonctionnement est relativement simple :</span></p>
+<p class="rvps8"><span class="rvts19"><br/></span></p>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps8"><span class="rvts19">Puller afin de récupérer les changements effectués qui ont été mis en place sur la branche</span></li>
+<li class="rvps8"><span class="rvts19">Commiter permettant de créer un paquet à envoyer sur votre branche</span></li>
+<li class="rvps8"><span class="rvts19">Pusher envoi les commits vers la branche distante (A effectuer à chaque étape clé et une fois les tests validés)</span></li>
+<li class="rvps8"><span class="rvts19">Merger permet de fusionner les changements d’une branche dans une autre (Peut-être source de conflit)</span></li>
+</ul>
+<p class="rvps2"><span class="rvts6">Une fois le projet terminé et validé la branche développement sera mergé sur la branche master du projet (La branche master ne contient que les versions terminer du projet).</span></p>
+<p class="rvps2"><span class="rvts6">Les sources de la solution sont divisées en 4 dépôts différents&nbsp;:</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps8"><span class="rvts19">Android - </span><a class="rvts20" href="https://github.com/jeoff09/My_QCM_ANDROID">https://github.com/jeoff09/My_QCM_ANDROID</a></li>
+<li class="rvps8"><span class="rvts19">Ios - </span><a class="rvts20" href="https://github.com/jeoff09/My_QCM_IOS">https://github.com/jeoff09/My_QCM_IOS</a></li>
+<li class="rvps8"><span class="rvts19">Front-end et webService - </span><a class="rvts20" href="https://github.com/jeoff09/QCM_CDSM_BACKEND">https://github.com/jeoff09/QCM_CDSM_BACKEND</a></li>
+<li class="rvps8"><span class="rvts19">Windows Phone - </span><a class="rvts20" href="https://github.com/antoinetrouve/MYQCM_WindowsPhone">https://github.com/antoinetrouve/MYQCM_WindowsPhone</a></li>
+</ul>
+<p class="rvps8"><span class="rvts19"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Voici un exemple de projet versionné&nbsp;:</span></p>
+<p class="rvps2"><img width="597" height="147" alt="" style="padding : 1px;" src="lib/NouvelElement47.png"></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><a class="rvts12" href="Architecturelogiciel.html">Architecture logiciel</a></p>
+<p class="rvps2" style="page-break-before: always;"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p></p>
+<p class="rvps5"><span class="rvts13">Créé avec HelpNDoc Personal Edition: </span><a class="rvts14" href="http://www.helpndoc.com/fr/outils-creation-aide">Outil de création d'aide complet</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 29/06/2016 by Godart Jeoffrey. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+

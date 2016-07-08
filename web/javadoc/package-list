@@ -1,0 +1,12 @@
+com.tactfactory.my_qcm
+com.tactfactory.my_qcm.configuration
+com.tactfactory.my_qcm.data
+com.tactfactory.my_qcm.data.asynctaskManageUserDB
+com.tactfactory.my_qcm.data.checkboxListManage
+com.tactfactory.my_qcm.data.webservice
+com.tactfactory.my_qcm.entity
+com.tactfactory.my_qcm.view.home
+com.tactfactory.my_qcm.view.login
+com.tactfactory.my_qcm.view.menu
+com.tactfactory.my_qcm.view.questionnaire
+com.tactfactory.my_qcm.view.result

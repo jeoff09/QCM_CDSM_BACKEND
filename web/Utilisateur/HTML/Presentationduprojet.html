@@ -1,0 +1,97 @@
+﻿<html>
+	
+<head>
+	<title>Pr&eacute;sentation du projet</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="questionnaire, qcm, utilisateurs, sessions, domaines">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "My_QCM.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Presentationduprojet");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Pr&eacute;sentation du projet</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Introductiondudocument.html">Introduction du document</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Introductiondudocument.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Presentationdudocument.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Fonctionnalitesprincipales.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts19">Présentation du projet</span></span></h1>
+<p class="rvps3"><span class="rvts16"><br/></span></p>
+<p class="rvps3"><img width="412" height="232" alt="" style="padding : 1px;" src="lib/logoTact.jpg"></p>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts15">Entreprise</span></span></h2>
+<p class="rvps2"><span class="rvts6">La société</span><a class="rvts12" href="http://www.tactfactory.com/" target="_blank"> Tact Factory</a><span class="rvts6"> spécialisée dans le développement de site web ainsi que d'applications mobiles et effectuant aussi des sessions de formations sur ces domaines, à souhaitée simplifier son système de QCM papier en le faisant passer sur un format mobile.</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts15">Objectif</span></span></h2>
+<p class="rvps3"><span class="rvts16"><br/></span></p>
+<p class="rvps2"><span class="rvts17">L'objectif de cette application est de permettre le remplissage d'une série de questionnaires par des élèves toute en permettant aux formateurs et administrateurs de pouvoir modifier les questionnaires et utilisateurs ainsi que les éléments associés.</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><a class="rvts18" href="Introductiondudocument.html">Introduction du document</a></p>
+<p></p>
+<p class="rvps5"><span class="rvts13">Créé avec HelpNDoc Personal Edition: </span><a class="rvts14" href="http://www.helpndoc.com/fr/creer-des-livres-numeriques-epub">Éditeur complet de livres électroniques ePub</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2016 by Godart Jeoffrey. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+

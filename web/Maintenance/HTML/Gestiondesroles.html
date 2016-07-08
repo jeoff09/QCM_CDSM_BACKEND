@@ -1,0 +1,94 @@
+﻿<html>
+	
+<head>
+	<title>Gestion des r&ocirc;les</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Documentation de maintenance.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Gestiondesroles");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Gestion des r&ocirc;les</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Fonctionnementduprojet.html">Fonctionnement du projet</a> &rsaquo;&rsaquo; <a href="GestiondesdonneesduBackoffice.html">Gestion des donn&eacute;es du Back-office</a> &rsaquo;&rsaquo; <a href="Utilisateurfos_user.html">Utilisateur (fos_user)</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Utilisateurfos_user.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Consulter.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Groupeteam.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts11">Gestion des rôles</span></span></h1>
+<p class="rvps3"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">On peut définir 3 rôles aux utilisateurs :</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts16">ROLE_USER</span><span class="rvts6"> - Ce rôle est celui par défaut, il permet de se connecter aux applications mais ne peut pas se connecter au Back Office.</span><br/><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts16">ROLE_ADMIN</span><span class="rvts6"> - Le rôle administrateur est celui qui permet la connexion au back office et permet de gérer toute les données excepté la gestion des utilisateurs</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts16">ROLE_SUPER_ADMIN</span><span class="rvts6"> - Le rôle super administrateur comme son nom l'indique est celui qui permet de manager toute les parties du Back Office et en particulier les utilisateurs.</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><a class="rvts12" href="Utilisateurfos_user.html">Retour Utilisateur (fos_user)</a></p>
+<p></p>
+<p class="rvps5"><span class="rvts13">Créé avec HelpNDoc Personal Edition: </span><a class="rvts14" href="http://www.helpndoc.com/fr/creer-des-livres-numeriques-epub">Écrire des livres électroniques ePub pour l'iPad</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 29/06/2016 by Godart Jeoffrey. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+

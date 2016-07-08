@@ -1,0 +1,125 @@
+﻿<html>
+	
+<head>
+	<title>Ajout</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="utilisateur, Back office, Username, utilisateurs, Gestion, Ajout">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Documentation de maintenance.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Ajout");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Ajout</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Fonctionnementduprojet.html">Fonctionnement du projet</a> &rsaquo;&rsaquo; <a href="GestiondesdonneesduBackoffice.html">Gestion des donn&eacute;es du Back-office</a> &rsaquo;&rsaquo; <a href="Utilisateurfos_user.html">Utilisateur (fos_user)</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Utilisateurfos_user.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Utilisateurfos_user.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Suppression.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><a name="_Toc451379255"></a>
+<span class="rvts0"><span class="rvts11">Ajout d’un utilisateur</span></span></h1>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Pour pouvoir ajouter un utilisateur vous devez au préalable vous être connecter au Back office.</span></p>
+<p class="rvps2"><span class="rvts6">Si cela n'est pas fait redirigez vous sur : </span><a class="rvts12" href="ConnexionauBackOffice.html">Connexion au Back Office</a></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Une fois connecté dirigez-vous dans la section Gestion des utilisateurs, puis cliquer sur le bouton </span><img alt="" style="padding : 1px;" src="lib/ajout.png"><span class="rvts6">de la section Utilisateurs. Vous devriez être rediriger sur l'écran ci-dessous.</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<h4 class="rvps9"><span class="rvts0"><span class="rvts24">Écran</span></span><span class="rvts0"><span class="rvts24"> d'ajout</span></span></h4>
+<p class="rvps2"><img width="935" height="342" alt="" style="padding : 1px;" src="lib/NouvelElement1.png"></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Vous pouvez à partir de l'écran définir plus champs lié à l'utilisateur :</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps2"><span class="rvts6">Username - Utilisé en tant que login pour la connexion</span></li>
+<li class="rvps2"><span class="rvts6">email - Email de l'utilisateur </span></li>
+<li class="rvps2"><span class="rvts6">password - mot de passe </span></li>
+<li class="rvps2"><span class="rvts6">Rôles - Les rôles de l'utilisateur ( Simple utilisateur ou administrateur)</span></li>
+<li class="rvps2"><span class="rvts6">Groupes ( Définir si il appartient à des groupes)</span></li>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside; list-style-type: circle;">
+<li class="rvps2"><span class="rvts6">Pour pouvoir lui ajouter des groupes ils faut qu'ils soient créé au préalable pour cela diriger vous dans le chapitre : </span><a class="rvts12" href="Ajout1.html">Créer un groupe</a></li>
+</ul>
+<li class="rvps2"><span class="rvts6">Questionnaires ( Permet de définir des questionnaires à cet utilisateur)</span></li>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside; list-style-type: circle;">
+<li class="rvps2"><span class="rvts6">Pour pouvoir lui ajouter des questionnaires ils faut qu'ils soient créé au préalable pour cela diriger vous dans le chapitre : </span><a class="rvts12" href="Ajout2.html">Créer un questionnaire</a></li>
+</ul></ul>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Les champs finissant par des * signifient qu'ils sont obligatoires.</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><img alt="" style="padding : 1px;" src="lib/AjoutMulti.png"></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Une fois ces informations saisies vous pouvez confirmer en cliquant sur : </span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: decimal;">
+<li value="1" class="rvps2"><span class="rvts6"> Créer, qui vous renvoi ensuite sur la page d'édition de l'élément créer</span></li>
+<li value="2" class="rvps2"><span class="rvts6">Créer et retourner à la liste, qui renvoi sur la liste des éléments une fois la création terminée</span></li>
+<li value="3" class="rvps2"><span class="rvts6">Créer et ajouter, qui créer l'élément et recharge le formulaire d'ajout </span></li>
+</ol>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><a class="rvts12" href="Utilisateurfos_user.html">Retour Utilisateur (fos_user)</a></p>
+<p></p>
+<p class="rvps5"><span class="rvts13">Créé avec HelpNDoc Personal Edition: </span><a class="rvts14" href="http://www.helpndoc.com/fr/creer-des-livres-numeriques-epub">Produire des livres électroniques facilement</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 29/06/2016 by Godart Jeoffrey. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+

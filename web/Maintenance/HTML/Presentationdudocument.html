@@ -1,0 +1,126 @@
+﻿<html>
+	
+<head>
+	<title>Pr&eacute;sentation du document</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Documentation de maintenance.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Presentationdudocument");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Pr&eacute;sentation du document</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Introduction.html">Introduction</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Introduction.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Presentationduprojet.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Fonctionnementduprojet.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts11">Présentation du document </span></span></h1>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts15">But et contenu du document</span></span></h2>
+<p class="rvps2"><span class="rvts17">Ce document à pour but de permettre à une personne disposant d'un minimum de connaissance de pouvoir gérer la maintenance, fonctionnement</span></p>
+<p class="rvps2"><span class="rvts17">et la pérennité du backOffice donnant accès à la gestion des données des applications My_QCM. </span></p>
+<p class="rvps2"><span class="rvts17"><br/></span></p>
+<p class="rvps2"><span class="rvts17">Il permettra entre autre une gestion de toute les tables contenues dans la base de données : </span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps2"><span class="rvts17">fos_user</span></li>
+<li class="rvps2"><span class="rvts17">m_c_q</span></li>
+<li class="rvps2"><span class="rvts17">question</span></li>
+<li class="rvps2"><span class="rvts17">answer</span></li>
+<li class="rvps2"><span class="rvts17">category</span></li>
+<li class="rvps2"><span class="rvts17">media</span></li>
+<li class="rvps2"><span class="rvts17">typ</span></li>
+<li class="rvps2"><span class="rvts17">team</span></li>
+<li class="rvps2"><span class="rvts17">result</span></li>
+</ul>
+<p class="rvps2"><span class="rvts17"><br/></span></p>
+<p class="rvps2"><span class="rvts17">Il donnera accès aussi à la maintenance :</span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps2"><span class="rvts17">Authentification</span></li>
+<li class="rvps2"><span class="rvts17">Restauration des données</span></li>
+<li class="rvps2"><span class="rvts17">Sauvegarde des données ( Base de données, applications) </span></li>
+</ul>
+<p class="rvps2"><span class="rvts16"><br/></span></p>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts15">Prérequis</span></span></h2>
+<p class="rvps2"><span class="rvts17">Pouvoir utilisé ce document de la meilleure manière certains connaissances sont essentiels :</span></p>
+<p class="rvps2"><span class="rvts16"> </span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps2"><span class="rvts17">Connaissance en base de données MySQL ainsi que du SGBD phpMyAdmin</span></li>
+<li class="rvps2"><span class="rvts17">Être un utilisateur confirmé de Symfony et des différents bundles associés ( Sonata, FOSUser, SonataAdminBundle, serializer-bundle,rest-bundle )</span></li>
+<li class="rvps2"><span class="rvts17">Pouvoir utilisé Doctrine </span></li>
+<li class="rvps2"><span class="rvts17">Avoir des connaissances dans la manipulation des flux JSON</span></li>
+<li class="rvps2"><span class="rvts17">Connaître la programmation Android ainsi que le logiciel Android Studio</span></li>
+<li class="rvps2"><span class="rvts17">Connaitre la programmation C# ainsi que le logiciel Visual Studio</span></li>
+<li class="rvps2"><span class="rvts17">Connaitre la programmation Objectiv C ainsi que le logiciel XCode</span></li>
+<li class="rvps2"><span class="rvts17">Avoir des connaissances en terme de versionning principalement git</span></li>
+</ul>
+<p class="rvps2"><span class="rvts17"><br/></span></p>
+<p class="rvps2"><span class="rvts17">Il s'adresse donc à des informaticiens avertis.</span></p>
+<p class="rvps2"><span class="rvts17"><br/></span></p>
+<p class="rvps2"><a class="rvts18" href="Introduction.html">Introduction</a></p>
+<p></p>
+<p class="rvps5"><span class="rvts13">Créé avec HelpNDoc Personal Edition: </span><a class="rvts14" href="http://www.helpndoc.com/fr/outils-creation-aide">Créer des aides HTML, DOC, PDF et des manuels depuis une même source</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 29/06/2016 by Godart Jeoffrey. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+

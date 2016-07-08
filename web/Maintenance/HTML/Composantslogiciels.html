@@ -1,0 +1,125 @@
+﻿<html>
+	
+<head>
+	<title>Composants logiciels</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Documentation de maintenance.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Composantslogiciels");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Composants logiciels</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Fonctionnementduprojet.html">Fonctionnement du projet</a> &rsaquo;&rsaquo; <a href="Gestiondeselementsfonctionnels.html">Gestion des &eacute;l&eacute;ments fonctionnels</a> &rsaquo;&rsaquo; <a href="Architecturelogiciel.html">Architecture logiciel</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Architecturelogiciel.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Architecturelogiciel.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Versionningetcodesource.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><a name="_Toc451379205"></a>
+<span class="rvts0"><span class="rvts27">Composants logiciels</span></span></h1>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts28">Schéma des composants</span></span><span class="rvts0"><span class="rvts29"> </span></span></h2>
+<p class="rvps2"><img width="600" height="538" alt="" style="padding : 1px;" src="lib/NouvelElement44.png"></p>
+<h3 class="rvps11"><a name="_Toc451379206"></a>
+<span class="rvts0"><span class="rvts26">Descriptif</span></span></h3>
+<h3 class="rvps11"><span class="rvts0"><span class="rvts26">Node client_user </span></span></h3>
+<p class="rvps2"><span class="rvts6">Le node client_user représente la partie applicative de la solution et regroupe plusieurs composants : </span></p>
+<p class="rvps2"><span class="rvts6">- Une interface utilisateur représentant l'Apk de l'application, le programme exécuté sur le téléphone.</span></p>
+<p class="rvps2"><span class="rvts6"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts6">Cet Apk dispose de deux librairies :</span></p>
+<p class="rvps12"><span class="rvts6">-HttpClient qui est la librairie qui permet d'exécuter les requêtes de communication avec le WebService, elle hérite de HTTPCore.</span></p>
+<p class="rvps13"><span class="rvts6">- SQLiteAdapter qui elle est une libraire créer qui permet la communication avec la base de données en SQLite. Elle contient toute les requête de gestion de la base (Ajout, listé, suppression...). </span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<h3 class="rvps11"><span class="rvts0"><span class="rvts26">Node Application DB </span></span></h3>
+<p class="rvps2"><span class="rvts6">Ce node représente la partie base de donnée de l'application qui est composé de :</span></p>
+<p class="rvps2"><span class="rvts6"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts6">- Un système de gestion de base de données SQLite</span></p>
+<p class="rvps2"><span class="rvts6"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts6">- Ainsi que de la base de données </span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<h3 class="rvps11"><span class="rvts0"><span class="rvts26">Node Client_Administrator &nbsp;</span></span></h3>
+<p class="rvps2"><span class="rvts6">Le node Client_Administrator illustre la partie d'administration de la solution côté client, c’est l'interface par navigateur donnant accès au front-end.</span></p>
+<h3 class="rvps11"><span class="rvts0"><span class="rvts26">Node Server Web</span></span></h3>
+<p class="rvps2"><span class="rvts6">Ce node exprime toute la partie serveur web et est divisé en 3 parties :</span></p>
+<p class="rvps2"><span class="rvts6"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts6">- Le node WebService </span></p>
+<p class="rvps2"><span class="rvts6"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts6">- Le node Front-end</span></p>
+<p class="rvps2"><span class="rvts6"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts6">- Le Bundle Doctrine qui permet à Symfony de communiquer avec le système gestion de base de données contenu dans le Node Server DB</span></p>
+<h3 class="rvps11"><span class="rvts0"><span class="rvts26">Node WebService</span></span></h3>
+<p class="rvps2"><span class="rvts6">Node permettant la réception et l'envoi de donnée entre l'application et le serveur Web.</span></p>
+<p class="rvps2"><span class="rvts6">Il est composé de deux Bundles :</span></p>
+<p class="rvps2"><span class="rvts6">- FOSRest &nbsp;qui permet de générer des urls renvoyant des flux Json pour permettre la circulation des infos entre l'applicatif et le serveur</span></p>
+<p class="rvps2"><span class="rvts6">- JMSerializer permet de sérialiser donc de mettre en forme les données envoyées via doctrine qui seront par la suite renvoyer par FOSREST Bundle</span></p>
+<h3 class="rvps11"><span class="rvts0"><span class="rvts26">Node Front-end</span></span></h3>
+<p class="rvps2"><span class="rvts6">Node qui permet d'administrer la solution au travers d'un portail web via plusieurs Bundle Symfony :</span></p>
+<p class="rvps14"><span class="rvts6">- Bundle Sonata permettant de mettre en place une interface d'administration facilement et rapidement. Qui est en fait un bundle regroupant d'autre bundle :</span></p>
+<p class="rvps14"><span class="rvts6">- Bundle Admin Fournissant à partir des informations reçu par le Bundle Doctrine-Admin une interface visuel auto-généré.</span></p>
+<h3 class="rvps11"><span class="rvts0"><span class="rvts26">Node Server DB</span></span></h3>
+<p class="rvps2"><span class="rvts6">A l'image du Node Application DB représente la partie base de données de notre serveur web.</span></p>
+<p class="rvps2"><span class="rvts6">En effet nous disposons également d'un système de gestion de base de données ainsi que de la base de données de l'application.</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><a class="rvts12" href="Architecturelogiciel.html">Architecture logiciel</a></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p></p>
+<p class="rvps5"><span class="rvts13">Créé avec HelpNDoc Personal Edition: </span><a class="rvts14" href="http://www.helpndoc.com/fr/tour-des-fonctionnalites">Créer facilement des fichiers Qt Help</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 29/06/2016 by Godart Jeoffrey. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+

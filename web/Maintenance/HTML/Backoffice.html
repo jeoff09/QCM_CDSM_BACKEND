@@ -1,0 +1,225 @@
+﻿<html>
+	
+<head>
+	<title>Back-office</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Documentation de maintenance.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Backoffice");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Back-office</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Fonctionnementduprojet.html">Fonctionnement du projet</a> &rsaquo;&rsaquo; <a href="Gestiondeselementsfonctionnels.html">Gestion des &eacute;l&eacute;ments fonctionnels</a> &rsaquo;&rsaquo; <a href="Architecturelogiciel.html">Architecture logiciel</a> &rsaquo;&rsaquo; <a href="Environnementdedeveloppement.html">Environnement de d&eacute;veloppement</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Environnementdedeveloppement.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Environnementdedeveloppement.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Applications1.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts11">Environnement de développement du Back-office</span></span></h1>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts15">Projet Global</span></span></h2>
+<p class="rvps3"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Le projet d’administration est développé en </span><span class="rvts31">PHP</span><span class="rvts6"> en </span><span class="rvts31">version 5.5.12</span><span class="rvts6"> avec le Framework Symfony2 en </span><span class="rvts31">version 2.8 </span><span class="rvts6">et le bundle </span><span class="rvts31">SonataAdminBundle</span><span class="rvts6"> en </span><span class="rvts31">version 2.3</span><span class="rvts6"> minimum.</span></p>
+<h3 class="rvps11"><a name="_Toc451379214"></a>
+<span class="rvts0"><span class="rvts26">Les dépendances Symfony2</span></span></h3>
+<div class="rvps10"><table border="1" cellpadding="4" cellspacing="-1" style="border-width: 0px; border-collapse: collapse;">
+<tr valign="top">
+<td width="90" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #4472c4;"><p class="rvps2"><span class="rvts6">Eclipse</span></p>
+</td>
+<td width="496" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #4472c4;"><p class="rvps2"><span class="rvts32">VERSION : Mars.1 Release (4.5.1)</span></p>
+<p class="rvps2"><span class="rvts32">Build ID : 20150924-1200</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="90" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">Dépendances</span></p>
+</td>
+<td width="496" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts33">"php": "&gt;=5.5.12"</span><span class="rvts34">,</span></p>
+<p class="rvps2"><span class="rvts33">"symfony/symfony": "2.8.*"</span><span class="rvts34">,</span></p>
+<p class="rvps2"><span class="rvts34">"doctrine/orm": "^2.4.8",</span></p>
+<p class="rvps2"><span class="rvts34">"doctrine/doctrine-bundle": "~1.4",</span></p>
+<p class="rvps2"><span class="rvts34">"symfony/swiftmailer-bundle": "~2.3",</span></p>
+<p class="rvps2"><span class="rvts34">"symfony/monolog-bundle": "~2.4",</span></p>
+<p class="rvps2"><span class="rvts34">"sensio/distribution-bundle": "~5.0",</span></p>
+<p class="rvps2"><span class="rvts34">"sensio/framework-extra-bundle": "^3.0.2",</span></p>
+<p class="rvps2"><span class="rvts34">"incenteev/composer-parameter-handler": "~2.0",</span></p>
+<p class="rvps2"><span class="rvts34">"friendsofsymfony/user-bundle": "~2.0@dev",</span></p>
+<p class="rvps2"><span class="rvts34">"friendsofsymfony/rest-bundle": "dev-master",</span></p>
+<p class="rvps2"><span class="rvts34">"jms/serializer-bundle": "dev-master",</span></p>
+<p class="rvps2"><span class="rvts34">"sensio/generator-bundle": "2.3.*",</span></p>
+<p class="rvps2"><span class="rvts34">"</span><span class="rvts33">sonata-project/admin-bundle": "^2.3</span><span class="rvts34">",</span></p>
+<p class="rvps2"><span class="rvts33">"sonata-project/doctrine-orm-admin-bundle": "^2.3"</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps2"><span class="rvts6">Afin d’installer les dépendances, il est conseillé d’utiliser </span><span class="rvts31">Composer</span><span class="rvts6"> de Symfony2. De cette manière, le Framework installera automatiquement les package et les dépendances nécessaires.</span></p>
+<h2 class="rvps7"><a name="_Toc451379215"></a>
+<span class="rvts0"><span class="rvts29">Architecture du projet de développement</span></span></h2>
+<p class="rvps2"><img width="287" height="405" alt="" style="padding : 1px;" src="lib/NouvelElement45.png"></p>
+<h3 class="rvps11"><a name="_Toc451379216"></a>
+<span class="rvts0"><span class="rvts26">Répertoires</span></span></h3>
+<div class="rvps10"><table border="1" cellpadding="4" cellspacing="-1" style="border-width: 0px; border-collapse: collapse;">
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #4472c4;"><p class="rvps2"><span class="rvts6">Nom du répertoire</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #4472c4;"><p class="rvps2"><span class="rvts6">Rôle</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">app\</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">Dossier d’installation et de configuration de Symfony2</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px;"><p class="rvps2"><span class="rvts6">src\</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px;"><p class="rvps2"><span class="rvts6">Dossier répertoriant tous vos projets</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">src\Admin\</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">Dossier répertoriant tous les projets permettant la création d’une interface d’administration</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px;"><p class="rvps2"><span class="rvts6">src\Admin\AdminBundle\</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px;"><p class="rvps2"><span class="rvts6">Dossier répertoriant tous les composants de l’interface d’administration créée avec le Framework Symfony2</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">src\Admin\AdminBundle\SonataAdminBundle</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">Dossier répertoriant tous les composants de l’interface d’administration créée avec le Framework Symfony2 et le bundle SonataAdminBundle.</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px;"><p class="rvps2"><span class="rvts6">…\SonataAdminBundle\Admin</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px;"><p class="rvps2"><span class="rvts6">Regroupe l’ensemble des class permettant la création des éléments métiers à afficher dans les vues&nbsp;</span></p>
+<p class="rvps3"><span class="rvts6"><br/></span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">…\SonataAdminBundle\Controller</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">Regroupe l’ensemble des class controller permettant de faire le lien entre la vue et la classe métier</span></p>
+<p class="rvps3"><span class="rvts6"><br/></span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px;"><p class="rvps2"><span class="rvts6">…\SonataAdminBundle\DependencyInjection</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px;"><p class="rvps2"><span class="rvts6">Classes permettant la configuration et la gestion du bundle</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">…\SonataAdminBundle\Resources</span></p>
+</td>
+<td width="293" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">Tous les fichiers de ressources</span></p>
+<p class="rvps3"><span class="rvts6"><br/></span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps10"><span class="rvts6"><br/></span></p>
+<p class="rvps10"><span class="rvts6"><br/></span></p>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts15">Web Service</span></span></h2>
+<p class="rvps2"><span class="rvts16"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Le projet du WebService avec le frameWork Symfony 2 (v2.8) avec &nbsp;PHP en version 5.5 et le bundle APIRestBundle en version 2.3 pour la création du routing et JMSSerializerBundle en version 2.3 pour la création du flux Json.</span></p>
+<h3 class="rvps11"><a name="_Toc451379268"></a>
+<span class="rvts0"><span class="rvts26">Les dépendances Symfony2</span></span></h3>
+<div class="rvps10"><table border="1" cellpadding="4" cellspacing="-1" style="border-width: 0px; border-collapse: collapse;">
+<tr valign="top">
+<td width="90" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #4472c4;"><p class="rvps2"><span class="rvts6">Projet</span></p>
+</td>
+<td width="496" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #4472c4;"><p class="rvps2"><span class="rvts32">Nom de la dépendance</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="90" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts6">Dépendances</span></p>
+</td>
+<td width="496" valign="top" style="border-width : 1px; border-color: #8eaadb; border-style: solid; padding: 0px 7px; background-color: #d9e2f3;"><p class="rvps2"><span class="rvts33">"php": "&gt;=5.5.12"</span><span class="rvts34">,</span></p>
+<p class="rvps2"><span class="rvts33">"symfony/symfony": "2.8.*"</span><span class="rvts34">,</span></p>
+<p class="rvps2"><span class="rvts33">"friendsofsymfony/rest-bundle": "dev-master"</span><span class="rvts34">,</span></p>
+<p class="rvps2"><span class="rvts33">"jms/serializer-bundle": "dev-master"</span><span class="rvts34">,</span></p>
+<p class="rvps2"><span class="rvts35"><br/></span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<h2 class="rvps7"><a name="_Toc451379269"></a>
+<span class="rvts0"><span class="rvts29">Architecture du projet de développement</span></span></h2>
+<p class="rvps2"><img alt="" style="padding : 1px;" src="lib/NouvelElement46.png"></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><a class="rvts12" href="Environnementdedeveloppement.html">Environnement de développement</a></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p></p>
+<p class="rvps5"><span class="rvts13">Créé avec HelpNDoc Personal Edition: </span><a class="rvts14" href="http://www.helpndoc.com/fr/tour-des-fonctionnalites/creer-ebooks-pour-kindle-amazon">Écrire des livres électronique Kindle</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 29/06/2016 by Godart Jeoffrey. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+

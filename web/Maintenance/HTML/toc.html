@@ -1,0 +1,1014 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<title>Documentation de maintenance- Table of Contents</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/silver-theme/jquery-ui-1.8.12.custom.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/dynatree/chm/ui.dynatree.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="css/toc.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#tabs .ui-widget-header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.dynatree.min.js"></script>
+	<script type="text/javascript" src="js/hndjsse.js"></script>
+	<script type="text/javascript">
+	
+		window.bSearchDataLoaded = false;
+		var sHelpIdToActivate = '';
+	
+		$(document).ready(function()
+		{
+			var sAnchorName = '';
+			try { sAnchorName = top.location.href.substring(top.location.href.lastIndexOf("#") + 1, top.location.href.length); }
+			catch(err) { sAnchorName = ''; }
+			var nSelectedTab = 0;
+			if (sAnchorName == '_index') nSelectedTab = 1
+			else if (sAnchorName == '_search') nSelectedTab = 2;			
+			$("#tabs").tabs({
+				selected: nSelectedTab,
+				select: function(event, ui) { HideKwPopup(); }
+			});
+			
+			// Toc
+			if ($("#tab-toc").length) {
+				$("#tab-toc").dynatree({
+					clickFolderMode: 1,
+					debugLevel: 0,
+					imagePath: 'css/dynatree/chm/',
+					onActivate: function(node){
+						if ($("#tab-keywords").length && $("#tab-keywords").dynatree && $("#tab-keywords").dynatree("getTree") && $("#tab-keywords").dynatree("getTree").activateKey)
+							$("#tab-keywords").dynatree("getTree").activateKey(null);
+						if(node.data.href && node.data.href != '#'){
+							window.open(node.data.href, node.data.target);
+						}
+					}
+				});
+				// Expand all nodes if required
+				$("#tab-toc").dynatree("getRoot").visit(function(node){
+						node.expand(true);
+					});
+				// Select the active help id
+				if (sHelpIdToActivate != '') $("#tab-toc").dynatree("getTree").activateKey(sHelpIdToActivate);
+			}
+			
+			// Keywords
+			
+			if ($("#tab-keywords").length) {
+				$("#tab-keywords").dynatree({
+					clickFolderMode: 1,
+					debugLevel: 0,
+					imagePath: 'css/dynatree/chm/',
+					onClick: function(node, event){
+						HideKwPopup();
+						if (node.data && node.data.click)
+						{
+							var aRefList = null;
+							eval('aRefList=' + node.data.click);
+							if (ShowKwPopup(node.li, aRefList))
+							{
+								if ($("#tab-toc") && $("#tab-toc").dynatree && $("#tab-toc").dynatree("getTree") && $("#tab-toc").dynatree("getTree").activateKey)
+									$("#tab-toc").dynatree("getTree").activateKey(null);
+								if(node.data.href && node.data.href != '#'){
+									window.open(node.data.href, node.data.target);
+								}
+							}
+						}
+					}
+				});
+				// Expand all nodes if required
+				$("#tab-keywords").dynatree("getRoot").visit(function(node){
+						node.expand(true);
+					});
+				}
+			
+			// Load search data
+			(function() {
+				var se = document.createElement('script'); se.type = 'text/javascript'; se.async = true;
+				se.src = 'js/hndsd.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(se, s);
+			})();
+		});
+		
+		$('body').click(function() {
+			HideKwPopup();
+		});
+		
+		function SelectTocItem(sHelpId)
+		{
+			if ($("#tab-toc").length && $("#tab-toc").dynatree && $("#tab-toc").dynatree("getTree") && $("#tab-toc").dynatree("getTree").getNodeByKey) {
+				$("#tab-toc").dynatree("getTree").getNodeByKey(sHelpId).activateSilently();
+			}
+			else {
+				sHelpIdToActivate = sHelpId;
+			}
+		}
+		
+		function HideKwPopup()
+		{
+			if($("#popupMenu")) $("#popupMenu").remove();
+		}
+		
+		function ShowKwPopup(oSender, aLinks)
+		{
+			HideKwPopup();
+			if (!aLinks || !aLinks.length || aLinks.length == 0) return false
+			else if (aLinks.length == 1) return true
+			else
+			{
+				var oParentDiv = document.createElement("DIV");
+				oParentDiv.id = "popupMenu";
+				var oLink = null;
+				// Close button
+				oLink = document.createElement("SPAN");
+				oLink.className = "close-button";
+				oLink.innerHTML = "X";
+				oLink.href = "#";
+				oLink.onclick = HideKwPopup;
+				oParentDiv.appendChild(oLink);
+				// Items
+				for (var nCnt=0; nCnt<aLinks.length; nCnt++)
+				{
+					oLink = document.createElement("A");
+					oLink.innerHTML = aLinks[nCnt][0];
+					oLink.href = aLinks[nCnt][1];
+					oLink.target = "FrameMain";
+					oLink.onclick = HideKwPopup;
+					oParentDiv.appendChild(oLink);
+				}
+				document.body.appendChild(oParentDiv);
+				var pos = $(oSender).offset(); 
+				var height = $(oSender).height();
+				$(oParentDiv).css({
+					"left": (pos.left+20) + "px",
+					"top": (pos.top + height + 5) + "px"
+				});
+				$(oParentDiv).show();
+				return false;
+			}
+		}
+		
+		function PerformSearch()
+		{
+			if (!window.bSearchDataLoaded) {
+				$("#search_results").html("Search engine data hasn't been fully loaded yet or an error occurred while loading it. This usually happens when documentation is browsed locally.");
+				return;
+			}
+			sValue = $("#search_value").val();
+			$("#search_results").html('Searching...');
+			var oSearchEngine = new HndJsSe;
+			oSearchEngine.ParseInput(sValue);			
+			oSearchEngine.PerformSearch();
+			if (!oSearchEngine.aResults || !oSearchEngine.aResults.length)
+			{
+				$("#search_results").html('No results found.');
+			}
+			else
+			{
+				$("#search_results").html('<div id="search_results_content"></div>');
+				var oUl = $("#search_results_content").append("<ul id='lr'></ul>").find("ul");
+				for (var nCnt = 0; nCnt < oSearchEngine.aResults.length; nCnt++)
+				{
+					if (oSearchEngine.aResults[nCnt][0] < aTl.length)
+					{
+						oUl.append("<li><a href='" + aTl[oSearchEngine.aResults[nCnt][0]][0] + "?search=" + escape(sValue) + "' target='FrameMain'>" + unescape(aTl[oSearchEngine.aResults[nCnt][0]][1]) + "</a></li>");
+					}
+				}
+				// Tree
+				$("#search_results_content").dynatree({
+					clickFolderMode: 1,
+					debugLevel: 0,
+					imagePath: 'css/dynatree/chm/',
+					onActivate: function(node){
+						if ($("#search_results_content") && $("#search_results_content").dynatree && $("#search_results_content").dynatree("getTree") && $("#search_results_content").dynatree("getTree").activateKey)
+							$("#search_results_content").dynatree("getTree").activateKey(null);
+						if(node.data.href && node.data.href != '#'){
+							window.open(node.data.href, node.data.target);
+						}
+					}
+				});
+			}
+		}
+	</script>
+</head>
+
+<body>
+
+	<div id="tabs">
+		<ul>
+			<li><a href="#tab-toc">Contents</a></li>
+			<li><a href="#tab-keywords">Index</a></li>
+			<li><a href="#tab-search">Search</a></li>
+			</ul>
+		<div id="tab-toc">
+			<ul id="toc" class="">
+
+				<li class="folder" id="Introduction" data="">
+							<a
+							href="Introduction.html"
+							target="FrameMain">
+								Introduction</a>
+
+				<ul><li class="" id="Pagedinformation" data="">
+							<a
+							href="Pagedinformation.html"
+							target="FrameMain">
+								Page d'information</a>
+
+				</li><li class="" id="Presentationduprojet" data="">
+							<a
+							href="Presentationduprojet.html"
+							target="FrameMain">
+								Pr&eacute;sentation du projet</a>
+
+				</li><li class="" id="Presentationdudocument" data="">
+							<a
+							href="Presentationdudocument.html"
+							target="FrameMain">
+								Pr&eacute;sentation du document</a>
+
+				</li></ul></li><li class="folder" id="Fonctionnementduprojet" data="">
+							<a
+							href="Fonctionnementduprojet.html"
+							target="FrameMain">
+								Fonctionnement du projet</a>
+
+				<ul><li class="folder" id="GestiondesdonneesduBackoffice" data="">
+							<a
+							href="GestiondesdonneesduBackoffice.html"
+							target="FrameMain">
+								Gestion des donn&eacute;es du Back-office</a>
+
+				<ul><li class="" id="ConnexionauBackOffice" data="">
+							<a
+							href="ConnexionauBackOffice.html"
+							target="FrameMain">
+								Connexion au Back-Office</a>
+
+				</li><li class="folder" id="Utilisateurfos_user" data="">
+							<a
+							href="Utilisateurfos_user.html"
+							target="FrameMain">
+								Utilisateur (fos_user)</a>
+
+				<ul><li class="" id="Ajout" data="">
+							<a
+							href="Ajout.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression" data="">
+							<a
+							href="Suppression.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification" data="">
+							<a
+							href="Modification.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter" data="">
+							<a
+							href="Consulter.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li><li class="" id="Gestiondesroles" data="">
+							<a
+							href="Gestiondesroles.html"
+							target="FrameMain">
+								Gestion des r&ocirc;les</a>
+
+				</li></ul></li><li class="folder" id="Groupeteam" data="">
+							<a
+							href="Groupeteam.html"
+							target="FrameMain">
+								Groupe (team)</a>
+
+				<ul><li class="" id="Ajout1" data="">
+							<a
+							href="Ajout1.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression1" data="">
+							<a
+							href="Suppression1.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification1" data="">
+							<a
+							href="Modification1.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter1" data="">
+							<a
+							href="Consulter1.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li></ul></li><li class="folder" id="MCQm_c_q" data="">
+							<a
+							href="MCQm_c_q.html"
+							target="FrameMain">
+								MCQ (m_c_q)</a>
+
+				<ul><li class="" id="Ajout2" data="">
+							<a
+							href="Ajout2.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression2" data="">
+							<a
+							href="Suppression2.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification2" data="">
+							<a
+							href="Modification2.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter2" data="">
+							<a
+							href="Consulter2.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li></ul></li><li class="folder" id="Question" data="">
+							<a
+							href="Question.html"
+							target="FrameMain">
+								Question</a>
+
+				<ul><li class="" id="Ajout3" data="">
+							<a
+							href="Ajout3.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression3" data="">
+							<a
+							href="Suppression3.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification3" data="">
+							<a
+							href="Modification3.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter3" data="">
+							<a
+							href="Consulter3.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li></ul></li><li class="folder" id="Reponseanswer" data="">
+							<a
+							href="Reponseanswer.html"
+							target="FrameMain">
+								R&eacute;ponse (answer)</a>
+
+				<ul><li class="" id="Ajout4" data="">
+							<a
+							href="Ajout4.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression4" data="">
+							<a
+							href="Suppression4.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification4" data="">
+							<a
+							href="Modification4.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter8" data="">
+							<a
+							href="Consulter8.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li></ul></li><li class="folder" id="Categoriecateg" data="">
+							<a
+							href="Categoriecateg.html"
+							target="FrameMain">
+								Cat&eacute;gorie (categ)</a>
+
+				<ul><li class="" id="Ajout5" data="">
+							<a
+							href="Ajout5.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression5" data="">
+							<a
+							href="Suppression5.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification5" data="">
+							<a
+							href="Modification5.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter4" data="">
+							<a
+							href="Consulter4.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li></ul></li><li class="folder" id="Media" data="">
+							<a
+							href="Media.html"
+							target="FrameMain">
+								Media</a>
+
+				<ul><li class="" id="Ajout6" data="">
+							<a
+							href="Ajout6.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression6" data="">
+							<a
+							href="Suppression6.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification6" data="">
+							<a
+							href="Modification6.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter5" data="">
+							<a
+							href="Consulter5.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li></ul></li><li class="folder" id="Typetyp" data="">
+							<a
+							href="Typetyp.html"
+							target="FrameMain">
+								Type (typ)</a>
+
+				<ul><li class="" id="Ajout7" data="">
+							<a
+							href="Ajout7.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression7" data="">
+							<a
+							href="Suppression7.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification7" data="">
+							<a
+							href="Modification7.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter6" data="">
+							<a
+							href="Consulter6.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li></ul></li><li class="folder" id="Resultatresult" data="">
+							<a
+							href="Resultatresult.html"
+							target="FrameMain">
+								R&eacute;sultat (result)</a>
+
+				<ul><li class="" id="Ajout8" data="">
+							<a
+							href="Ajout8.html"
+							target="FrameMain">
+								Ajout</a>
+
+				</li><li class="" id="Suppression8" data="">
+							<a
+							href="Suppression8.html"
+							target="FrameMain">
+								Suppression</a>
+
+				</li><li class="" id="Modification8" data="">
+							<a
+							href="Modification8.html"
+							target="FrameMain">
+								Modification</a>
+
+				</li><li class="" id="Consulter7" data="">
+							<a
+							href="Consulter7.html"
+							target="FrameMain">
+								Consulter</a>
+
+				</li></ul></li></ul></li><li class="folder" id="Gestiondeselementsfonctionnels" data="">
+							<a
+							href="Gestiondeselementsfonctionnels.html"
+							target="FrameMain">
+								Gestion des &eacute;l&eacute;ments fonctionnels</a>
+
+				<ul><li class="folder" id="Architecturereseau" data="">
+							<a
+							href="Architecturereseau.html"
+							target="FrameMain">
+								Architecture r&eacute;seau</a>
+
+				<ul><li class="" id="Schemadureseau" data="">
+							<a
+							href="Schemadureseau.html"
+							target="FrameMain">
+								Sch&eacute;ma du r&eacute;seau</a>
+
+				</li><li class="" id="Composantsreseau" data="">
+							<a
+							href="Composantsreseau.html"
+							target="FrameMain">
+								Composants r&eacute;seau</a>
+
+				</li></ul></li><li class="folder" id="Architecturelogiciel" data="">
+							<a
+							href="Architecturelogiciel.html"
+							target="FrameMain">
+								Architecture logiciel</a>
+
+				<ul><li class="" id="Composantslogiciels" data="">
+							<a
+							href="Composantslogiciels.html"
+							target="FrameMain">
+								Composants logiciels</a>
+
+				</li><li class="" id="Versionningetcodesource" data="">
+							<a
+							href="Versionningetcodesource.html"
+							target="FrameMain">
+								Versionning et code source</a>
+
+				</li><li class="folder" id="Environnementdedeveloppement" data="">
+							<a
+							href="Environnementdedeveloppement.html"
+							target="FrameMain">
+								Environnement de d&eacute;veloppement</a>
+
+				<ul><li class="" id="Backoffice" data="">
+							<a
+							href="Backoffice.html"
+							target="FrameMain">
+								Back-office</a>
+
+				</li><li class="" id="Applications1" data="">
+							<a
+							href="Applications1.html"
+							target="FrameMain">
+								Applications</a>
+
+				</li><li class="" id="Peripheriquesmobiles" data="">
+							<a
+							href="Peripheriquesmobiles.html"
+							target="FrameMain">
+								P&eacute;riph&eacute;riques mobiles</a>
+
+				</li></ul></li></ul></li><li class="" id="AccederaubackOffice" data="">
+							<a
+							href="AccederaubackOffice.html"
+							target="FrameMain">
+								Acc&eacute;der au back-Office</a>
+
+				</li><li class="folder" id="Basededonnees" data="">
+							<a
+							href="Basededonnees.html"
+							target="FrameMain">
+								Base de donn&eacute;es</a>
+
+				<ul><li class="" id="EmplacementdelabasededonneesBack" data="">
+							<a
+							href="EmplacementdelabasededonneesBack.html"
+							target="FrameMain">
+								Emplacement de la base de donn&eacute;es Back-office</a>
+
+				</li><li class="" id="Elementsdesbasesdedonnees" data="">
+							<a
+							href="Elementsdesbasesdedonnees.html"
+							target="FrameMain">
+								&Eacute;l&eacute;ments des bases de donn&eacute;es</a>
+
+				</li><li class="" id="Identifiantdeconnexionalabaseded" data="">
+							<a
+							href="Identifiantdeconnexionalabaseded.html"
+							target="FrameMain">
+								Identifiant de connexion &agrave; la base de donn&eacute;es </a>
+
+				</li><li class="" id="Accederalabasededonnees" data="">
+							<a
+							href="Accederalabasededonnees.html"
+							target="FrameMain">
+								Acc&eacute;der &agrave; la base de donn&eacute;es</a>
+
+				</li><li class="" id="Conservationdesdonnees" data="">
+							<a
+							href="Conservationdesdonnees.html"
+							target="FrameMain">
+								Conservation des donn&eacute;es</a>
+
+				</li></ul></li></ul></li><li class="folder" id="Pannesetproblemesrencontres" data="">
+							<a
+							href="Pannesetproblemesrencontres.html"
+							target="FrameMain">
+								Pannes et probl&egrave;mes rencontr&eacute;s</a>
+
+				<ul><li class="" id="Erreurdeconnexion" data="">
+							<a
+							href="Erreurdeconnexion.html"
+							target="FrameMain">
+								Erreur de connexion</a>
+
+				</li><li class="" id="Gestionsdeserreursetproblemesren" data="">
+							<a
+							href="Gestionsdeserreursetproblemesren.html"
+							target="FrameMain">
+								Gestions des erreurs et probl&egrave;mes rencontr&eacute;s</a>
+
+				</li></ul></li><li class="folder" id="Reponseauxbesoinsutilisateur" data="">
+							<a
+							href="Reponseauxbesoinsutilisateur.html"
+							target="FrameMain">
+								R&eacute;ponse aux besoins utilisateur</a>
+
+				<ul><li class="" id="Gestiondesdonneesducompte" data="">
+							<a
+							href="Gestiondesdonneesducompte.html"
+							target="FrameMain">
+								Gestion des donn&eacute;es du compte</a>
+
+				</li><li class="" id="Gestiondeselementsaffichables" data="">
+							<a
+							href="Gestiondeselementsaffichables.html"
+							target="FrameMain">
+								Gestion des &eacute;l&eacute;ments affichables</a>
+
+				</li><li class="" id="Lienversladocumentationutilisate" data="">
+							<a
+							href="Lienversladocumentationutilisate.html"
+							target="FrameMain">
+								Lien vers la documentation utilisateur</a>
+
+				</li></ul></li></ul></li></ul>
+		</div>
+		
+		<div id="tab-keywords">
+			<ul id="keywords">
+
+				<li class="file" data="click:'[[\'Ajout\',\'Ajout.html\']]'">
+							<a
+								href="Ajout.html"
+								target="FrameMain"
+								onClick="[['Ajout','Ajout.html']]"
+								>
+								Ajout</a>
+
+				</li><li class="file" data="click:'[[\'Applications\',\'Applications1.html\']]'">
+							<a
+								href="Applications1.html"
+								target="FrameMain"
+								onClick="[['Applications','Applications1.html']]"
+								>
+								Android</a>
+
+				</li><li class="file" data="click:'[[\'Architecture logiciel\',\'Architecturelogiciel.html\']]'">
+							<a
+								href="Architecturelogiciel.html"
+								target="FrameMain"
+								onClick="[['Architecture logiciel','Architecturelogiciel.html']]"
+								>
+								applications</a>
+
+				</li><li class="file" data="click:'[[\'Applications\',\'Applications1.html\']]'">
+							<a
+								href="Applications1.html"
+								target="FrameMain"
+								onClick="[['Applications','Applications1.html']]"
+								>
+								Architecture</a>
+
+				</li><li class="file" data="click:'[[\'Ajout\',\'Ajout.html\']]'">
+							<a
+								href="Ajout.html"
+								target="FrameMain"
+								onClick="[['Ajout','Ajout.html']]"
+								>
+								Back office</a>
+
+				</li><li class="file" data="click:'[[\'Architecture logiciel\',\'Architecturelogiciel.html\']]'">
+							<a
+								href="Architecturelogiciel.html"
+								target="FrameMain"
+								onClick="[['Architecture logiciel','Architecturelogiciel.html']]"
+								>
+								back-Office</a>
+
+				</li><li class="file" data="click:'[[\'Base de donn&eacute;es\',\'Basededonnees.html\']]'">
+							<a
+								href="Basededonnees.html"
+								target="FrameMain"
+								onClick="[['Base de donn&eacute;es','Basededonnees.html']]"
+								>
+								base de données</a>
+
+				</li><li class="file" data="click:'[[\'Base de donn&eacute;es\',\'Basededonnees.html\']]'">
+							<a
+								href="Basededonnees.html"
+								target="FrameMain"
+								onClick="[['Base de donn&eacute;es','Basededonnees.html']]"
+								>
+								bases de données</a>
+
+				</li><li class="file" data="click:'[[\'Cat&eacute;gorie (categ)\',\'Categoriecateg.html\']]'">
+							<a
+								href="Categoriecateg.html"
+								target="FrameMain"
+								onClick="[['Cat&eacute;gorie (categ)','Categoriecateg.html']]"
+								>
+								catégorie</a>
+
+				</li><li class="file" data="click:'[[\'Cat&eacute;gorie (categ)\',\'Categoriecateg.html\']]'">
+							<a
+								href="Categoriecateg.html"
+								target="FrameMain"
+								onClick="[['Cat&eacute;gorie (categ)','Categoriecateg.html']]"
+								>
+								catégories</a>
+
+				</li><li class="file" data="click:'[[\'R&eacute;ponse aux besoins utilisateur\',\'Reponseauxbesoinsutilisateur.html\']]'">
+							<a
+								href="Reponseauxbesoinsutilisateur.html"
+								target="FrameMain"
+								onClick="[['R&eacute;ponse aux besoins utilisateur','Reponseauxbesoinsutilisateur.html']]"
+								>
+								compte</a>
+
+				</li><li class="file" data="click:'[[\'R&eacute;ponse aux besoins utilisateur\',\'Reponseauxbesoinsutilisateur.html\']]'">
+							<a
+								href="Reponseauxbesoinsutilisateur.html"
+								target="FrameMain"
+								onClick="[['R&eacute;ponse aux besoins utilisateur','Reponseauxbesoinsutilisateur.html']]"
+								>
+								documentation utilisateur</a>
+
+				</li><li class="file" data="click:'[[\'Pannes et probl&egrave;mes rencontr&eacute;s\',\'Pannesetproblemesrencontres.html\']]'">
+							<a
+								href="Pannesetproblemesrencontres.html"
+								target="FrameMain"
+								onClick="[['Pannes et probl&egrave;mes rencontr&eacute;s','Pannesetproblemesrencontres.html']]"
+								>
+								Erreur</a>
+
+				</li><li class="file" data="click:'[[\'Pannes et probl&egrave;mes rencontr&eacute;s\',\'Pannesetproblemesrencontres.html\']]'">
+							<a
+								href="Pannesetproblemesrencontres.html"
+								target="FrameMain"
+								onClick="[['Pannes et probl&egrave;mes rencontr&eacute;s','Pannesetproblemesrencontres.html']]"
+								>
+								erreurs</a>
+
+				</li><li class="file" data="click:'[[\'Ajout\',\'Ajout.html\']]'">
+							<a
+								href="Ajout.html"
+								target="FrameMain"
+								onClick="[['Ajout','Ajout.html']]"
+								>
+								Gestion</a>
+
+				</li><li class="file" data="click:'[[\'Modification\',\'Modification1.html\'],[\'Ajout\',\'Ajout1.html\']]'">
+							<a
+								href="Modification1.html"
+								target="FrameMain"
+								onClick="[['Modification','Modification1.html'],['Ajout','Ajout1.html']]"
+								>
+								groupe</a>
+
+				</li><li class="file" data="click:'[[\'Architecture logiciel\',\'Architecturelogiciel.html\']]'">
+							<a
+								href="Architecturelogiciel.html"
+								target="FrameMain"
+								onClick="[['Architecture logiciel','Architecturelogiciel.html']]"
+								>
+								logiciel</a>
+
+				</li><li class="file" data="click:'[[\'Architecture logiciel\',\'Architecturelogiciel.html\']]'">
+							<a
+								href="Architecturelogiciel.html"
+								target="FrameMain"
+								onClick="[['Architecture logiciel','Architecturelogiciel.html']]"
+								>
+								logiciels</a>
+
+				</li><li class="file" data="click:'[[\'Ajout\',\'Ajout2.html\'],[\'MCQ (m_c_q)\',\'MCQm_c_q.html\']]'">
+							<a
+								href="Ajout2.html"
+								target="FrameMain"
+								onClick="[['Ajout','Ajout2.html'],['MCQ (m_c_q)','MCQm_c_q.html']]"
+								>
+								MCQ</a>
+
+				</li><li class="file" data="click:'[[\'Modification\',\'Modification3.html\']]'">
+							<a
+								href="Modification3.html"
+								target="FrameMain"
+								onClick="[['Modification','Modification3.html']]"
+								>
+								Media</a>
+
+				</li><li class="file" data="click:'[[\'Media\',\'Media.html\']]'">
+							<a
+								href="Media.html"
+								target="FrameMain"
+								onClick="[['Media','Media.html']]"
+								>
+								média</a>
+
+				</li><li class="file" data="click:'[[\'Media\',\'Media.html\']]'">
+							<a
+								href="Media.html"
+								target="FrameMain"
+								onClick="[['Media','Media.html']]"
+								>
+								médias</a>
+
+				</li><li class="file" data="click:'[[\'Environnement de d&eacute;veloppement\',\'Environnementdedeveloppement.html\']]'">
+							<a
+								href="Environnementdedeveloppement.html"
+								target="FrameMain"
+								onClick="[['Environnement de d&eacute;veloppement','Environnementdedeveloppement.html']]"
+								>
+								mobiles</a>
+
+				</li><li class="file" data="click:'[[\'Modification\',\'Modification.html\']]'">
+							<a
+								href="Modification.html"
+								target="FrameMain"
+								onClick="[['Modification','Modification.html']]"
+								>
+								modifier</a>
+
+				</li><li class="file" data="click:'[[\'Question\',\'Question.html\']]'">
+							<a
+								href="Question.html"
+								target="FrameMain"
+								onClick="[['Question','Question.html']]"
+								>
+								question</a>
+
+				</li><li class="file" data="click:'[[\'Question\',\'Question.html\']]'">
+							<a
+								href="Question.html"
+								target="FrameMain"
+								onClick="[['Question','Question.html']]"
+								>
+								Questions</a>
+
+				</li><li class="file" data="click:'[[\'R&eacute;ponse (answer)\',\'Reponseanswer.html\']]'">
+							<a
+								href="Reponseanswer.html"
+								target="FrameMain"
+								onClick="[['R&eacute;ponse (answer)','Reponseanswer.html']]"
+								>
+								réponse</a>
+
+				</li><li class="file" data="click:'[[\'R&eacute;ponse (answer)\',\'Reponseanswer.html\']]'">
+							<a
+								href="Reponseanswer.html"
+								target="FrameMain"
+								onClick="[['R&eacute;ponse (answer)','Reponseanswer.html']]"
+								>
+								réponses</a>
+
+				</li><li class="file" data="click:'[[\'Architecture r&eacute;seau\',\'Architecturereseau.html\']]'">
+							<a
+								href="Architecturereseau.html"
+								target="FrameMain"
+								onClick="[['Architecture r&eacute;seau','Architecturereseau.html']]"
+								>
+								réseau</a>
+
+				</li><li class="file" data="click:'[[\'R&eacute;sultat (result)\',\'Resultatresult.html\']]'">
+							<a
+								href="Resultatresult.html"
+								target="FrameMain"
+								onClick="[['R&eacute;sultat (result)','Resultatresult.html']]"
+								>
+								résultat</a>
+
+				</li><li class="file" data="click:'[[\'R&eacute;sultat (result)\',\'Resultatresult.html\']]'">
+							<a
+								href="Resultatresult.html"
+								target="FrameMain"
+								onClick="[['R&eacute;sultat (result)','Resultatresult.html']]"
+								>
+								résultats</a>
+
+				</li><li class="file" data="click:'[[\'Suppression\',\'Suppression.html\']]'">
+							<a
+								href="Suppression.html"
+								target="FrameMain"
+								onClick="[['Suppression','Suppression.html']]"
+								>
+								supprimer</a>
+
+				</li><li class="file" data="click:'[[\'Pr&eacute;sentation du projet\',\'Presentationduprojet.html\']]'">
+							<a
+								href="Presentationduprojet.html"
+								target="FrameMain"
+								onClick="[['Pr&eacute;sentation du projet','Presentationduprojet.html']]"
+								>
+								TACT Factory</a>
+
+				</li><li class="file" data="click:'[[\'Type (typ)\',\'Typetyp.html\']]'">
+							<a
+								href="Typetyp.html"
+								target="FrameMain"
+								onClick="[['Type (typ)','Typetyp.html']]"
+								>
+								type</a>
+
+				</li><li class="file" data="click:'[[\'Type (typ)\',\'Typetyp.html\']]'">
+							<a
+								href="Typetyp.html"
+								target="FrameMain"
+								onClick="[['Type (typ)','Typetyp.html']]"
+								>
+								types</a>
+
+				</li><li class="file" data="click:'[[\'Ajout\',\'Ajout.html\']]'">
+							<a
+								href="Ajout.html"
+								target="FrameMain"
+								onClick="[['Ajout','Ajout.html']]"
+								>
+								Username</a>
+
+				</li><li class="file" data="click:'[[\'Ajout\',\'Ajout.html\']]'">
+							<a
+								href="Ajout.html"
+								target="FrameMain"
+								onClick="[['Ajout','Ajout.html']]"
+								>
+								utilisateur</a>
+
+				</li><li class="file" data="click:'[[\'Ajout\',\'Ajout.html\']]'">
+							<a
+								href="Ajout.html"
+								target="FrameMain"
+								onClick="[['Ajout','Ajout.html']]"
+								>
+								utilisateurs</a>
+
+				</li></ul>
+		</div>
+		
+		<div id="tab-search">
+			<form onsubmit="PerformSearch(); return false;">
+				<label for="search_value">Search:</label>
+				<input id="search_value" name="search_value"></input>
+				<input type="submit" value="Search"/>
+			</form>
+			<div id="search_results"></div>
+		</div>
+		
+		</div>
+    
+</body>
+
+</html>
+

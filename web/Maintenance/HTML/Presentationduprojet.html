@@ -1,0 +1,113 @@
+﻿<html>
+	
+<head>
+	<title>Pr&eacute;sentation du projet</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="TACT Factory">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Documentation de maintenance.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Presentationduprojet");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Pr&eacute;sentation du projet</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Introduction.html">Introduction</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Introduction.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Pagedinformation.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Presentationdudocument.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts11">Présentation du projet</span></span></h1>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts15">Présentation de l'entreprise</span></span></h2>
+<p class="rvps3"><img width="451" height="254" alt="" style="padding : 1px;" src="lib/preview.jpg"></p>
+<p class="rvps2"><span class="rvts6">TACT Factory est une Agence de&nbsp;développement d’applications mobiles&nbsp;Android et iPhone.</span></p>
+<p class="rvps2"><span class="rvts6">Fournisseur souple et réactif elle permet via une méthodologie rigoureuse et approuvé de fournir des applications mobiles innovantes. </span></p>
+<p class="rvps2"><span class="rvts6">Elle s’engage à répondre aux besoins dans les temps et à ce que l’utilisateur soit au cœur des démarches de conception, dans cette optique TACT Factory s’axe particulièrement sur les bonnes pratiques de «&nbsp;l’extrême Programming&nbsp;» gage de qualité.</span></p>
+<p class="rvps2"><span class="rvts6">Intervenant aussi dans le domaine de l’éducation en proposant des formations allant de la découverte de l’univers du mobile à la conception avancée d’application mobile. &nbsp;</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<h2 class="rvps7"><span class="rvts0"><span class="rvts15">Rappel du besoin</span></span></h2>
+<p class="rvps2"><span class="rvts6">Elle souhaiterait simplifier son système de QCM papier en le faisant passer sur un format mobile multiplateformes (IOS, Windows Phone, Android). A l’heure actuelle ces sessions de QCM s’effectuent sur format papier ce qui intègre un certains nombres de points problématiques&nbsp;:</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps8"><a class="rvts20" href="Ajout2.html">La création d’un QCM</a><span class="rvts19"> nécessite du temps (Choix des questions, mise en page...)</span></li>
+<li class="rvps8"><span class="rvts19">La correction d’un QCM est longue et fastidieux </span></li>
+<li class="rvps8"><span class="rvts19">Cela ne permet pas d’avoir des QCM avec des questions aléatoires </span></li>
+<li class="rvps8"><span class="rvts19">Oblige l’impression sur papier à chaque session d’examen</span></li>
+<li class="rvps8"><span class="rvts19">Ne permet pas de modifier le contenu du QCM en cas d’erreur</span></li>
+<li class="rvps8"><span class="rvts19"></span></li>
+</ul>
+<p class="rvps2"><span class="rvts6">TACT Factory souhaiterait également intégrer la gestion effectué précédemment par les intervenants sur un format web.</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Les applications devront fonctionner au minimum sur les versions ci-dessous :</span></p>
+<p class="rvps2"><span class="rvts6"> </span></p>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps8"><span class="rvts19">Android &nbsp;4.1-6.0</span></li>
+<li class="rvps8"><span class="rvts19">Ios 8 à 9</span></li>
+<li class="rvps8"><span class="rvts19">Windows phone 8.1</span></li>
+</ul>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><a class="rvts18" href="Introduction.html">Introduction</a></p>
+<p></p>
+<p class="rvps5"><span class="rvts13">Créé avec HelpNDoc Personal Edition: </span><a class="rvts14" href="http://www.helpndoc.com/fr">Générateur de documentations PDF gratuit</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 29/06/2016 by Godart Jeoffrey. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+
